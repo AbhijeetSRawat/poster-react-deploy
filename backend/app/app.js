@@ -1,13 +1,13 @@
 import express, { urlencoded } from 'express';
 import cors from 'cors';
-import path from 'path';
+
 import { upload } from '../utils/multer.js';
 import cookieParser from 'cookie-parser';
 
 
 // import { authMiddleware, verifyToken } from '../middleware/auth.middleware.js';
 import {
-  adminAddProduct,
+  
   adminDeleteUser,
   adminLogin,
   adminProductEdit,
@@ -28,7 +28,7 @@ const app = express();
 
 // Middleware
 
-app.use(cors({ origin: 'https://grand-moxie-3e7def.netlify.app',credentials:true }));
+app.use(cors({ origin: 'https://aesthetic-cat-f30d3d.netlify.app',credentials:true }));
 app.use(cookieParser());
 app.use('/uploads', express.static('uploads'));
 app.use(express.json());

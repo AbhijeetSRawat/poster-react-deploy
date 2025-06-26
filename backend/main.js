@@ -12,10 +12,10 @@ import { userRoutes } from './routes/userRoutes.js';
 // import { userRoutes } from './routes/userRoutes.js';
 import dotenv from 'dotenv';
 import { cloudinaryConnect } from './config/cloudinary.js';
-import fileUpload from 'express-fileupload';
+
 dotenv.config();
 
-app.use(cors({ origin: 'https://grand-moxie-3e7def.netlify.app',credentials:true }));
+app.use(cors({ origin: 'https://aesthetic-cat-f30d3d.netlify.app',credentials:true }));
 
 
 //Middleware
