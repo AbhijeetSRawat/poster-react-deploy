@@ -12,12 +12,12 @@ import { requestOtpController } from "../controllers/requestOtpController.js";
 import { verifyOtpController } from "../controllers/verifyOtpContrroller.js";
 import { profile } from "../controllers/profile.js";
 import { downloadWithLogo } from "../controllers/downloadWithLogo.js";
-
+import { upload } from "../utils/multer.js";
 
 
 router.post('/request-otp', requestOtpController);
 router.post('/verify-otp', verifyOtpController);
-router.post('/profile',tokenMiddleware,profile)
+router.post('/profile',upload.single('logo'), tokenMiddleware,profile)
 
 
 router.get("/getUserDetails",tokenMiddleware,getUserDetails);

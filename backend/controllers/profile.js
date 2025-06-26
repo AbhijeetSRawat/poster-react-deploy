@@ -14,7 +14,7 @@ export async function profile (req,res){
         const{address,about, age, gender,business} = req.body;
         console.log(address,about,age,gender,business)
 
-        const {logo}= req.files;
+        const logo= req.file;
         console.log("REQ.FILES:", logo);
 
 
