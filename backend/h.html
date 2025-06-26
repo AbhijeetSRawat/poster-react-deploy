@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            position: fixed;
+            height: 100%;
+        }
+
+        .sidebar h2 {
+            font-size: 22px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #34495e;
+            padding-bottom: 10px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #bdc3c7;
+            font-size: 18px;
+            margin: 10px 0;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .sidebar a i {
+            margin-right: 10px;
+        }
+
+        .sidebar a:hover {
+            background-color: #34495e;
+            color: #ecf0f1;
+        }
+
+        .sidebar a.active {
+            background-color: #1abc9c;
+            color: #ecf0f1;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .main-content .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .main-content .header h1 {
+            font-size: 24px;
+            color: #34495e;
+        }
+
+        .main-content .header .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .main-content .header .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .main-content .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .main-content .stats .stat-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .main-content .stats .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .main-content .stats .stat-card h3 {
+            margin: 10px 0;
+            font-size: 20px;
+            color: #34495e;
+        }
+
+        .main-content .stats .stat-card p {
+            font-size: 16px;
+            color: #7f8c8d;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .main-content {
+                margin-left: 200px;
+                width: calc(100% - 200px);
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .sidebar {
+                width: 100px;
+                padding: 10px;
+            }
+
+            .sidebar h2 {
+                font-size: 18px;
+            }
+
+            .sidebar a {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .main-content {
+                margin-left: 100px;
+                width: calc(100% - 100px);
+            }
+
+            .main-content .stats {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <a href="#" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="#"><i class="fas fa-users"></i> Users</a>
+        <a href="#"><i class="fas fa-box"></i> Products</a>
+        <a href="#"><i class="fas fa-chart-line"></i> Analytics</a>
+        <a href="#"><i class="fas fa-cogs"></i> Settings</a>
+        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Welcome, Admin</h1>
+            <div class="profile">
+                <img src="https://via.placeholder.com/40" alt="Profile">
+                <span>Admin</span>
+            </div>
+        </div>
+        <div class="stats">
+            <div class="stat-card">
+                <h3>120</h3>
+                <p>New Users</p>
+            </div>
+            <div class="stat-card">
+                <h3>87</h3>
+                <p>Orders Today</p>
+            </div>
+            <div class="stat-card">
+                <h3>35</h3>
+                <p>Pending Tickets</p>
+            </div>
+            <div class="stat-card">
+                <h3>$15,800</h3>
+                <p>Total Revenue</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
