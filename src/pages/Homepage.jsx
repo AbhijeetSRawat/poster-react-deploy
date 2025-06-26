@@ -29,7 +29,7 @@ const navigate = useNavigate();
   const callShowByDate = async () => {
     try {
       setDateLoading(true);
-      const dateResult = await fetch("http://localhost:11000/displayByDate");
+      const dateResult = await fetch("https://poster-react-deploy.onrender.com/displayByDate");
       const dateResponse = await dateResult.json();
 
       console.log("show By Date response is", dateResponse.data);
@@ -46,7 +46,7 @@ const navigate = useNavigate();
     try {
       setAllLoading(true);
       const allDataResult = await fetch(
-        "http://localhost:11000/api/get/product"
+        "https://poster-react-deploy.onrender.com/api/get/product"
       );
       const allDataResponse = await allDataResult.json();
 

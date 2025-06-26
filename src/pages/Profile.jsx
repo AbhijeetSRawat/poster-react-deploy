@@ -28,7 +28,7 @@ const ProfilePage = ({ mode, setMode }) => {
 
   const fetchProfile = async () => {
     try {
-      const res = await axios.get("http://localhost:11000/getUserDetails", {
+      const res = await axios.get("https://poster-react-deploy.onrender.com/getUserDetails", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const user = res.data.data;
@@ -77,7 +77,7 @@ const ProfilePage = ({ mode, setMode }) => {
 
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:11000/profile", data, {
+      const res = await axios.post("https://poster-react-deploy.onrender.com/profile", data, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

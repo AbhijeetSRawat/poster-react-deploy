@@ -13,7 +13,7 @@ const AdminUsers = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch("http://localhost:11000/getAllUsers");
+      const res = await fetch("https://poster-react-deploy.onrender.com/getAllUsers");
       const data = await res.json();
       setUsers(data.data || []);
     } catch (error) {

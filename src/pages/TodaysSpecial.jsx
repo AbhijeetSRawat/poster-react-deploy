@@ -17,7 +17,7 @@ const TodaysSpecial = ({ mode, setMode }) => {
   const callShowByDate = async () => {
     try {
       setDateLoading(true);
-      const res = await fetch("http://localhost:11000/displayByDate");
+      const res = await fetch("https://poster-react-deploy.onrender.com/displayByDate");
       const data = await res.json();
       setDateData(data.data || []);
     } catch (error) {
@@ -30,7 +30,7 @@ const TodaysSpecial = ({ mode, setMode }) => {
   const fetchUserLogo = async () => {
     try {
       const token = JSON.parse(localStorage.getItem("token"));
-      const res = await fetch("http://localhost:11000/getUserDetails", {
+      const res = await fetch("https://poster-react-deploy.onrender.com/getUserDetails", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -58,7 +58,7 @@ const TodaysSpecial = ({ mode, setMode }) => {
 
     const encodedImage = encodeURIComponent(selectedImage);
     const encodedLogo = userLogo ? `&logoURL=${encodeURIComponent(userLogo)}` : "";
-    const downloadURL = `http://localhost:11000/downloadWithLogo?imgURL=${encodedImage}${encodedLogo}`;
+    const downloadURL = `https://poster-react-deploy.onrender.com/downloadWithLogo?imgURL=${encodedImage}${encodedLogo}`;
 
     const link = document.createElement("a");
     link.href = downloadURL;

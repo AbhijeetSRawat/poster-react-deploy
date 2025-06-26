@@ -13,7 +13,7 @@ const SubscriptionPage = ({ mode }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch("http://localhost:11000/getUserDetails", {
+        const res = await fetch("https://poster-react-deploy.onrender.com/getUserDetails", {
           headers: {
             Authorization: token,
             Accept: "application/json",
@@ -54,7 +54,7 @@ const SubscriptionPage = ({ mode }) => {
 
     setLoading(true);
     try {
-      const referalRes = await fetch("http://localhost:11000/findReferal", {
+      const referalRes = await fetch("https://poster-react-deploy.onrender.com/findReferal", {
         method: "POST",
         headers: {
           Authorization: token,
@@ -66,7 +66,7 @@ const SubscriptionPage = ({ mode }) => {
       const referalData = await referalRes.json();
 
       if (referalData.success) {
-        const subRes = await fetch("http://localhost:11000/subscription", {
+        const subRes = await fetch("https://poster-react-deploy.onrender.com/subscription", {
           method: "POST",
           headers: {
             Authorization: token,
@@ -86,7 +86,7 @@ const SubscriptionPage = ({ mode }) => {
       }
 
       // Proceed with Razorpay
-      const orderRes = await fetch("http://localhost:11000/createPayment", {
+      const orderRes = await fetch("https://poster-react-deploy.onrender.com/createPayment", {
         method: "POST",
         headers: {
           Authorization: token,
@@ -110,7 +110,7 @@ const SubscriptionPage = ({ mode }) => {
         order_id: order.id,
         handler: async function (response) {
           try {
-            const verifyRes = await fetch("http://localhost:11000/verifyPayment", {
+            const verifyRes = await fetch("https://poster-react-deploy.onrender.com/verifyPayment", {
               method: "POST",
               headers: {
                 Authorization: token,
@@ -126,7 +126,7 @@ const SubscriptionPage = ({ mode }) => {
             const verifyData = await verifyRes.json();
 
             if (verifyData.success) {
-              const finalRes = await fetch("http://localhost:11000/subscription", {
+              const finalRes = await fetch("https://poster-react-deploy.onrender.com/subscription", {
                 method: "POST",
                 headers: {
                   Authorization: token,

@@ -31,7 +31,7 @@ const AdminProducts = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get('http://localhost:11000/api/get/product');
+      const res = await axios.get('https://poster-react-deploy.onrender.com/api/get/product');
       setProducts(res.data.allProduct || []);
     } catch (err) {
       console.error('Failed to load products:', err);
@@ -57,7 +57,7 @@ const AdminProducts = () => {
 
     try {
         setLoading(true)
-      await axios.post("http://localhost:11000/api/admin/add/product", data);
+      await axios.post("https://poster-react-deploy.onrender.com/api/admin/add/product", data);
       toast.success('Product added successfully');
       setFormData({ product_image: null, category: '', tags: '' });
     } catch (err) {
@@ -90,7 +90,7 @@ const AdminProducts = () => {
     }
 
     await axios.put(
-      `http://localhost:11000/api/product/edit/${editProduct._id}`,
+      `https://poster-react-deploy.onrender.com/api/product/edit/${editProduct._id}`,
       form
     );
 

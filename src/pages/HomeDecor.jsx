@@ -11,7 +11,7 @@ const HomeDecor = ({ mode, setMode }) => {
   const callAllData = async () => {
     try {
       setAllLoading(true);
-      const res = await fetch("http://localhost:11000/api/get/product");
+      const res = await fetch("https://poster-react-deploy.onrender.com/api/get/product");
       const data = await res.json();
       setAllData(data.allProduct || []);
     } catch (error) {
@@ -25,7 +25,7 @@ const HomeDecor = ({ mode, setMode }) => {
   const fetchUserLogo = async () => {
     try {
       const token = JSON.parse(localStorage.getItem("token"));
-      const res = await fetch("http://localhost:11000/getUserDetails", {
+      const res = await fetch("https://poster-react-deploy.onrender.com/getUserDetails", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -55,7 +55,7 @@ const HomeDecor = ({ mode, setMode }) => {
 
     const encodedImg = encodeURIComponent(selectedImage);
     const encodedLogo = userLogo ? `&logoURL=${encodeURIComponent(userLogo)}` : "";
-    const downloadURL = `http://localhost:11000/downloadWithLogo?imgURL=${encodedImg}${encodedLogo}`;
+    const downloadURL = `https://poster-react-deploy.onrender.com/downloadWithLogo?imgURL=${encodedImg}${encodedLogo}`;
 
     const link = document.createElement("a");
     link.href = downloadURL;

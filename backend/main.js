@@ -15,7 +15,7 @@ import { cloudinaryConnect } from './config/cloudinary.js';
 import fileUpload from 'express-fileupload';
 dotenv.config();
 
-app.use(cors({ origin: 'http://localhost:5173',credentials:true }));
+app.use(cors({ origin: 'https://grand-moxie-3e7def.netlify.app',credentials:true }));
 
 
 //Middleware

@@ -13,7 +13,7 @@ const ArtisticAndAbstract = ({ mode, setMode }) => {
   const callAllData = async () => {
     try {
       setAllLoading(true);
-      const allDataResult = await fetch("http://localhost:11000/api/get/product");
+      const allDataResult = await fetch("https://poster-react-deploy.onrender.com/api/get/product");
       const allDataResponse = await allDataResult.json();
       setAllData(allDataResponse.allProduct || []);
     } catch (error) {
@@ -27,7 +27,7 @@ const ArtisticAndAbstract = ({ mode, setMode }) => {
   const fetchUserLogo = async () => {
     try {
       const token = JSON.parse(localStorage.getItem("token"));
-      const res = await fetch("http://localhost:11000/getUserDetails", {
+      const res = await fetch("https://poster-react-deploy.onrender.com/getUserDetails", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -57,7 +57,7 @@ const ArtisticAndAbstract = ({ mode, setMode }) => {
 
     const encodedImage = encodeURIComponent(selectedImage);
     const encodedLogo = userLogo ? `&logoURL=${encodeURIComponent(userLogo)}` : "";
-    const downloadURL = `http://localhost:11000/downloadWithLogo?imgURL=${encodedImage}${encodedLogo}`;
+    const downloadURL = `https://poster-react-deploy.onrender.com/downloadWithLogo?imgURL=${encodedImage}${encodedLogo}`;
 
     const link = document.createElement("a");
     link.href = downloadURL;

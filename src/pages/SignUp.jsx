@@ -49,7 +49,7 @@ const SignUp = ({ mode, setMode }) => {
         return;
       }
 
-      const response = await axios.post("http://localhost:11000/request-otp", {
+      const response = await axios.post("https://poster-react-deploy.onrender.com/request-otp", {
         firstName: form.firstName,
         lastName: form.lastName,
         email: form.email,
@@ -85,7 +85,7 @@ const SignUp = ({ mode, setMode }) => {
         return;
       }
 
-      const response = await axios.post("http://localhost:11000/verify-otp", {
+      const response = await axios.post("https://poster-react-deploy.onrender.com/verify-otp", {
         firstName: form.firstName,
         lastName: form.lastName,
         email: form.email,

@@ -18,7 +18,7 @@ const AdminDashboard = () => {
 
   const fetchData = async () => {
     try {
-      const userRes = await fetch("http://localhost:11000/api/admin/view/users");
+      const userRes = await fetch("https://poster-react-deploy.onrender.com/api/admin/view/users");
       const userData = await userRes.json();
       const allUsers = userData.allUsers || [];
       setUsers(allUsers);
@@ -26,7 +26,7 @@ const AdminDashboard = () => {
       setSubscribedUsers(subs);
       renderUserChart(countByMonth(allUsers), countByMonth(subs));
 
-      const productRes = await fetch("http://localhost:11000/api/get/product");
+      const productRes = await fetch("https://poster-react-deploy.onrender.com/api/get/product");
       const productData = await productRes.json();
       const allProducts = productData.allProduct || [];
       setProducts(allProducts);
