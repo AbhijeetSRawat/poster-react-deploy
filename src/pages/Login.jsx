@@ -126,6 +126,11 @@ const Login = ({ mode, setMode }) => {
             className="w-full p-2 border rounded placeholder-gray-400"
             required
           />
+
+            <div onClick={()=>navigate('/forget-password')} className="w-full flex justify-end">
+            Forget Password?
+          </div>
+
           {!loading ? (
             <button
               type="submit"
