@@ -15,7 +15,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
+  
   const fetchData = async () => {
     try {
       const userRes = await fetch("https://poster-react-deploy.onrender.com/api/admin/view/users");

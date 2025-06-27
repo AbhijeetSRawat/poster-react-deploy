@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { MdDarkMode, MdLightMode } from 'react-icons/md';
-import { FaPlus, FaEdit, FaSave, FaTimes, FaBars, FaTachometerAlt, FaUsers, FaBoxOpen } from 'react-icons/fa';
+import { FaPlus, FaEdit, FaSave, FaTimes, FaBars, FaTachometerAlt, FaUsers, FaBoxOpen, FaSignOutAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
@@ -133,6 +133,10 @@ const AdminProducts = () => {
               <button className="flex items-center gap-3 p-2 bg-teal-600 text-white rounded">
                 <FaBoxOpen />
                 <span>Products</span>
+              </button>
+              <button onClick={() => navigate('/')} className="flex items-center gap-3 p-2 hover:bg-red-500 rounded">
+                <FaSignOutAlt />
+                <span>Logout</span>
               </button>
             </nav>
           </div>
