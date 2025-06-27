@@ -191,7 +191,7 @@ const AdminProducts = () => {
               </div>
             </div>
            {(loading)?
-            (<div className="mt-4 bg-green-600 w-[40vw] hover:bg-green-700 text-white px-4 py-2 rounded flex justify-between"><div className='loader flex justify-between'></div></div>):( <button onClick={handleUpload} className="mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">
+            (<div className="mt-4 bg-green-600 w-[40vw] hover:bg-green-700 text-white px-4 py-2 rounded flex justify-center"><div className='loader flex justify-center'></div></div>):( <button onClick={handleUpload} className="mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">
               Upload Product
             </button>)
            }
