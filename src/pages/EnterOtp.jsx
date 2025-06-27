@@ -89,7 +89,7 @@ const EnterOtp = ({ mode, setMode }) => {
   };
 
   const bg = mode ? 'bg-blue-100 text-gray-800' : 'bg-slate-900 text-white';
-  const inputStyle = 'w-full p-2 border rounded';
+  const inputStyle = 'w-full p-2 border rounded md:h-[5vh] md:text-xl';
   const footerBg = mode ? 'bg-blue-200 text-gray-800' : 'bg-slate-800 text-gray-300';
 
   return (
@@ -100,9 +100,9 @@ const EnterOtp = ({ mode, setMode }) => {
       <section className="max-w-lg mx-auto mt-10 p-6 bg-white shadow-md rounded text-black">
         {step === 'otp' ? (
           <>
-            <h2 className="text-xl font-semibold mb-4 text-center">Enter OTP</h2>
+            <h2 className="text-xl font-semibold mb-4 text-center md:text-3xl">Enter OTP</h2>
             <form onSubmit={handleOtpSubmit}>
-              <label className="block text-sm mb-1">OTP sent to {email}</label>
+              <label className="block text-sm mb-1 md:text-base">OTP sent to {email}</label>
               <input
                 type="text"
                 className={inputStyle}
@@ -112,7 +112,7 @@ const EnterOtp = ({ mode, setMode }) => {
                 required
               />
               {errorMsg && <p className="text-red-500 mt-2 text-sm">{errorMsg}</p>}
-              <button type="submit" className="mt-4 w-full flex justify-center bg-teal-600 hover:bg-teal-700 text-white py-2 rounded">
+              <button type="submit" className="mt-4 w-full flex justify-center bg-teal-600 hover:bg-teal-700 text-white py-2 rounded md:text-2xl">
                {
               loading ? (<div className='loader w-full h-full flex justify-center'></div>):(<>Verify OTP</>)
             }
@@ -121,9 +121,9 @@ const EnterOtp = ({ mode, setMode }) => {
           </>
         ) : (
           <>
-            <h2 className="text-xl font-semibold mb-4 text-center">Set New Password</h2>
+            <h2 className="text-xl font-semibold mb-4 text-center md:text-3xl">Set New Password</h2>
             <form onSubmit={handlePasswordSubmit}>
-              <label className="block text-sm mb-1">New Password</label>
+              <label className="block text-sm mb-1 md:text-base">New Password</label>
               <input
                 type="password"
                 className={inputStyle}
@@ -133,7 +133,7 @@ const EnterOtp = ({ mode, setMode }) => {
                 required
               />
               {errorMsg && <p className="text-red-500 mt-2 text-sm">{errorMsg}</p>}
-              <button type="submit" className="mt-4 w-full bg-teal-600 hover:bg-teal-700 text-white py-2 rounded">
+              <button type="submit" className="mt-4 w-full bg-teal-600 hover:bg-teal-700 text-white py-2 rounded md:text-2xl">
                 Reset Password
               </button>
             </form>
@@ -141,10 +141,10 @@ const EnterOtp = ({ mode, setMode }) => {
         )}
       </section>
 
-      <footer className={`${footerBg} text-center text-sm py-6 mt-20`}>
+      <footer className={`${footerBg} text-center text-sm py-6 mt-20 md:mt-[40vh] `}>
         <div className="max-w-screen-xl mx-auto px-4">
-          <img src={logo} alt="Logo" className="h-10 mx-auto mb-2" />
-          <p>&copy; 2025 TechBro24. Designed by <a href="https://www.techbro24.com/" className="underline">TechBro24</a></p>
+          <img src={logo} alt="Logo" className="h-10 mx-auto mb-2 md:h-24" />
+          <p className='md:text-xl'>&copy; 2025 TechBro24. Designed by <a href="https://www.techbro24.com/" className="underline">TechBro24</a></p>
         </div>
       </footer>
     </div>

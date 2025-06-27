@@ -154,12 +154,12 @@ const SignUp = ({ mode, setMode }) => {
       {/* sign up form */}
 
       <div
-        className={`max-w-md flex flex-col items-center  p-6 mt-10 mx-2 rounded-xl shadow-2xl ${
+        className={`max-w-md flex flex-col items-center p-6 mt-10 mx-2  rounded-xl md:mx-auto md:mt-40 md:max-w-2xl md:rounded-3xl shadow-2xl ${
           mode ? `bg-blue-200 shadow-blue-900 ` : `bg-slate-700 shadow-blue-500`
         }  `}
       >
         <h2
-          className={`text-xl font-bold mb-4 ${
+          className={`text-xl md:text-3xl font-bold mb-4 ${
             mode ? `text-black` : `text-white`
           }`}
         >
@@ -169,7 +169,7 @@ const SignUp = ({ mode, setMode }) => {
           <input
             type="text"
             name="firstName"
-            className={`  w-full p-2 border rounded placeholder-gray-400`}
+            className={`  w-full  md:h-[5vh] md:text-xl p-2 border rounded placeholder-gray-400`}
             value={form.firstName}
             onChange={handleChange}
             placeholder="First Name"
@@ -181,7 +181,7 @@ const SignUp = ({ mode, setMode }) => {
             value={form.lastName}
             onChange={handleChange}
             placeholder="Last Name"
-            className="w-full p-2 border placeholder-gray-400 rounded"
+            className="w-full  md:h-[5vh] md:text-xl p-2 border placeholder-gray-400 rounded"
             required
           />
           <div className="space-y-2">
@@ -191,7 +191,7 @@ const SignUp = ({ mode, setMode }) => {
               value={form.email}
               onChange={handleChange}
               placeholder="Email"
-              className="w-full p-2 border placeholder-gray-400 rounded"
+              className="w-full  md:h-[5vh] md:text-xl p-2 border placeholder-gray-400 rounded"
               required
             />
             <input
@@ -200,7 +200,7 @@ const SignUp = ({ mode, setMode }) => {
               value={form.number}
               onChange={handleChange}
               placeholder="Phone Number"
-              className="w-full p-2 border placeholder-gray-400 rounded"
+              className="w-full  md:h-[5vh] md:text-xl p-2 border placeholder-gray-400 rounded"
               required
             />
             <input
@@ -209,7 +209,7 @@ const SignUp = ({ mode, setMode }) => {
               value={form.password}
               onChange={handleChange}
               placeholder="Password"
-              className="w-full p-2 border placeholder-gray-400 rounded"
+              className="w-full  md:h-[5vh] md:text-xl p-2 border placeholder-gray-400 rounded"
               required
             />
             {!otpSent &&
@@ -221,7 +221,7 @@ const SignUp = ({ mode, setMode }) => {
                 <button
                   type="button"
                   onClick={sendOtp}
-                  className="bg-blue-500 text-white h-[6vh]  px-4 py-2 rounded w-full"
+                  className="bg-blue-500 text-white h-[6vh] md:text-2xl  px-4 py-2 rounded w-full"
                 >
                   Send OTP
                 </button>
@@ -235,14 +235,14 @@ const SignUp = ({ mode, setMode }) => {
                 value={form.otp}
                 onChange={handleChange}
                 placeholder="Enter OTP"
-                className="w-full p-2 border placeholder-gray-400 rounded"
+                className="w-full p-2 border md:h-[5vh] md:text-xl placeholder-gray-400 rounded"
                 required
               />
 
               {!loading ? (
                 <button
                   type="submit"
-                  className="bg-green-600 text-white px-4 py-2  rounded w-full"
+                  className="bg-green-600 md:text-2xl text-white px-4 py-2  rounded w-full"
                 >
                   Sign Up
                 </button>
@@ -254,7 +254,7 @@ const SignUp = ({ mode, setMode }) => {
             </>
           )}
         </form>
-        <div className="mt-3 underline" onClick={()=>navigate('/login')}>
+        <div className="mt-3 md:text-xl underline" onClick={()=>navigate('/login')}>
           Already have an account
         </div>
       </div>

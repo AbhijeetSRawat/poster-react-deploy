@@ -181,13 +181,13 @@ rzp.open();
 
   return (
     <div className={`min-h-screen pt-16 flex items-center justify-center px-4 ${mode ? 'bg-gradient-to-br from-pink-300 to-purple-400 text-black' : 'bg-slate-950 text-white'}`}>
-      <div className={`w-full max-w-md rounded-2xl p-6 shadow-lg ${mode ? 'bg-white' : 'bg-slate-800'}`}>
-        <h1 className={`text-2xl font-bold text-center ${mode ? 'text-purple-700' : 'text-white'}`}>
+      <div className={`w-full max-w-md md:max-w-2xl rounded-2xl p-6 shadow-lg ${mode ? 'bg-white' : 'bg-slate-800'}`}>
+        <h1 className={`text-2xl font-bold text-center md:text-3xl ${mode ? 'text-purple-700' : 'text-white'}`}>
           {userData?.subscribed ? "You're Subscribed!" : "Subscribe"}
         </h1>
 
         <div className="flex justify-center mt-4">
-          <div className="bg-pink-400 text-white w-24 h-24 rounded-full text-2xl font-bold flex items-center justify-center shadow-md">
+          <div className="bg-pink-400 text-white w-24 h-24 md:w-[10vh] md:h-[10vh] rounded-full text-2xl font-bold flex items-center justify-center shadow-md">
             ₹500
           </div>
         </div>
@@ -196,13 +196,13 @@ rzp.open();
           <>
             <input
               type="text"
-              className="mt-5 w-full p-2 border border-gray-400 rounded placeholder-gray-400 text-black"
+              className="mt-5 w-full p-2 border border-gray-400 rounded placeholder-gray-400 md:h-[5vh] md:text-xl text-black"
               placeholder="Enter referral code..."
               value={referalCode}
               onChange={(e) => setReferalCode(e.target.value)}
             />
 
-            <ul className="mt-5 text-sm space-y-2">
+            <ul className="mt-5 text-sm space-y-2 md:text-xl">
               {[
                 "Access high-quality visuals",
                 "Design custom logos",
@@ -220,7 +220,7 @@ rzp.open();
             <button
               disabled={loading}
               onClick={handleSubscribe}
-              className={`w-full mt-6 py-2 text-white rounded-full font-semibold ${
+              className={`w-full mt-6 py-2 text-white rounded-full font-semibold md:text-2xl ${
                 loading
                   ? 'bg-gray-400 cursor-not-allowed'
                   : 'bg-purple-600 hover:bg-purple-700 transition-all'
@@ -232,7 +232,7 @@ rzp.open();
         )}
 
         <button
-          className="w-full mt-4 text-sm text-blue-400 hover:underline"
+          className="w-full mt-4 text-sm text-blue-400 hover:underline md:text-base"
           onClick={() => navigate('/')}
         >
           ← Back to Homepage

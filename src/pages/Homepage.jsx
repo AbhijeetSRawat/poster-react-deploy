@@ -75,7 +75,7 @@ const navigate = useNavigate();
     <div
       className={`${
         mode ? "bg-blue-300 text-gray-700" : "bg-slate-900 text-gray-400"
-      } min-h-screen pt-16`}
+      } min-h-screen pt-16 md:py-28`}
     >
       {/* Top Heading */}
       {/* <div className="w-full h-[10vh] p-3 flex justify-between items-center">
@@ -122,13 +122,13 @@ const navigate = useNavigate();
           
           placeholder="Search Category or Media"
           onChange={(e)=>(setSearchValue(e.target.value))}
-          className={`w-[75vw] h-[7vh] rounded-l-md px-3 ${
+          className={`w-[75vw] h-[7vh] rounded-l-md px-3 md:text-xl md:rounded-l-xl ${
             mode ? "bg-blue-400" : "bg-slate-800"
           }`}
         />
         <button
         onClick={searchClick}
-          className={`w-[15vw] h-[7vh] flex justify-center items-center rounded-r-md ${
+          className={`w-[15vw] h-[7vh] flex justify-center items-center rounded-r-md md:rounded-r-xl ${
             mode ? "bg-blue-400" : "bg-slate-800"
           }`}
         >
@@ -137,9 +137,9 @@ const navigate = useNavigate();
       </div>
 
       {/* Today's Posts */}
-      <div className="mt-5 px-4">
-        <h2 className="text-xl font-semibold mb-3 flex items-center justify-between">
-          {formattedDate}'s Specials <div onClick={()=>navigate("/todaysspecial")} className="text-xs pt-1">View All{'>'}</div>
+      <div className="mt-8 px-4 md:px-12">
+        <h2 className="text-xl font-semibold mb-3 flex items-center justify-between md:text-2xl">
+          {formattedDate}'s Specials <div onClick={()=>navigate("/todaysspecial")} className="text-xs pt-1 md:text-base">View All{'>'}</div>
         </h2>
         {dateLoading ? (
           <div className="spinner"></div>
@@ -148,7 +148,7 @@ const navigate = useNavigate();
             {dateData.map((pic, index) => (
               <div
                 key={pic._id || index}
-className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow "              >
+className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 snap-center rounded shadow "              >
                 <img
                   src={pic.path}
                   alt={pic.productImage || "Today's Post"}
@@ -164,8 +164,8 @@ className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow
       {/* rest posts */}
       {/* Business Specific */}
 
-      <div className="mt-5 px-4">
-        <h2 className="text-xl font-semibold mb-3 flex items-center justify-between">Business Specific <div onClick={()=>navigate("/businessspecific")} className="text-xs pt-1">View All{'>'}</div></h2>
+      <div className="mt-5 px-4 md:px-12">
+        <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center justify-between">Business Specific <div onClick={()=>navigate("/businessspecific")} className="text-xs pt-1 md:text-base">View All{'>'}</div></h2>
         {allLoading ? (
           <div className="spinner"> </div>
         ) : (
@@ -175,7 +175,7 @@ className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow
               .map((pic, index) => (
                 <div
                   key={pic._id || index}
-                  className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow "
+                  className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 snap-center rounded shadow "
                 >
                   <img
                     src={pic.path}
@@ -190,8 +190,8 @@ className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow
       </div>
 
       {/* Home Decor */}
-      <div className="mt-5 px-4">
-        <h2 className="text-xl font-semibold mb-3 flex items-center justify-between">Home Decorations <div onClick={()=>navigate("/homedecor")} className="text-xs pt-1">View All{'>'}</div></h2>
+      <div className="mt-5 px-4 md:px-12">
+        <h2 className="text-xl font-semibold mb-3 flex items-center justify-between md:text-2xl">Home Decorations <div onClick={()=>navigate("/homedecor")} className="text-xs pt-1 md:text-base">View All{'>'}</div></h2>
         {allLoading ? (
           <div className="spinner"> </div>
         ) : (
@@ -201,7 +201,7 @@ className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow
               .map((pic, index) => (
                 <div
                   key={pic._id || index}
-  className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow "                >
+  className="w-[100px] h-[100px] md:h-[150px] md:w-[150px] overflow flex-shrink-0 snap-center rounded shadow "                >
                   <img
                     src={pic.path}
                     alt={pic.productImage || "Today's Post"}
@@ -215,8 +215,8 @@ className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow
       </div>
 
       {/* Event & Celebrations */}
-      <div className="mt-5 px-4">
-        <h2 className="text-xl font-semibold mb-3 flex items-center justify-between">Event & Celebrations <div onClick={()=>navigate("/eventandcelebrations")} className="text-xs pt-1">View All{'>'}</div></h2>
+      <div className="mt-5 px-4 md:px-12">
+        <h2 className="text-xl font-semibold mb-3 flex items-center justify-between md:text-2xl">Event & Celebrations <div onClick={()=>navigate("/eventandcelebrations")} className="text-xs pt-1 md:text-base">View All{'>'}</div></h2>
         {allLoading ? (
           <div className="spinner"> </div>
         ) : (
@@ -226,7 +226,7 @@ className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow
               .map((pic, index) => (
                 <div
                   key={pic._id || index}
-  className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow "                >
+  className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 snap-center rounded shadow "                >
                   <img
                     src={pic.path}
                     alt={pic.productImage || "Today's Post"}
@@ -240,8 +240,8 @@ className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow
       </div>
 
       {/* Inspirational & Quotes */}
-      <div className="mt-5 px-4">
-        <h2 className="text-xl font-semibold mb-3 flex items-center justify-between">Inspirational & Quotes <div onClick={()=>navigate("/inspirationalandquotes")} className="text-xs pt-1">View All{'>'}</div></h2>
+      <div className="mt-5 px-4 md:px-12">
+        <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center justify-between">Inspirational & Quotes <div onClick={()=>navigate("/inspirationalandquotes")} className="text-xs pt-1 md:text-base">View All{'>'}</div></h2>
         {allLoading ? (
           <div className="spinner"> </div>
         ) : (
@@ -251,7 +251,7 @@ className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow
               .map((pic, index) => (
                 <div
                   key={pic._id || index}
-  className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow "                >
+  className="w-[100px] h-[100px] md:h-[150px] md:w-[150px] overflow flex-shrink-0 snap-center rounded shadow "                >
                   <img
                     src={pic.path}
                     alt={pic.productImage || "Today's Post"}
@@ -265,8 +265,8 @@ className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow
       </div>
 
       {/* Custom Design */}
-      <div className="mt-5 px-4">
-        <h2 className="text-xl font-semibold mb-3 flex items-center justify-between">Custom Design <div onClick={()=>navigate("/customdesign")} className="text-xs pt-1">View All{'>'}</div></h2>
+      <div className="mt-5 px-4 md:px-12">
+        <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center justify-between">Custom Design <div onClick={()=>navigate("/customdesign")} className="text-xs pt-1 md:text-base">View All{'>'}</div></h2>
         {allLoading ? (
           <div className="spinner"> </div>
         ) : (
@@ -276,7 +276,7 @@ className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow
               .map((pic, index) => (
                 <div
                   key={pic._id || index}
-  className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow "                >
+  className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 snap-center rounded shadow "                >
                   <img
                     src={pic.path}
                     alt={pic.productImage || "Today's Post"}
@@ -290,8 +290,8 @@ className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow
       </div>
 
       {/* Seasonal Themes */}
-      <div className="mt-5 px-4">
-        <h2 className="text-xl font-semibold mb-3 flex items-center justify-between">Seasonal Themes <div onClick={()=>navigate("/seasonalthemes")} className="text-xs pt-1">View All{'>'}</div></h2>
+      <div className="mt-5 px-4 md:px-12">
+        <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center justify-between">Seasonal Themes <div onClick={()=>navigate("/seasonalthemes")} className="text-xs md:text-base pt-1">View All{'>'}</div></h2>
         {allLoading ? (
           <div className="spinner"> </div>
         ) : (
@@ -301,7 +301,7 @@ className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow
               .map((pic, index) => (
                 <div
                   key={pic._id || index}
-  className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow "                >
+  className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 snap-center rounded shadow "                >
                   <img
                     src={pic.path}
                     alt={pic.productImage || "Today's Post"}
@@ -315,8 +315,8 @@ className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow
       </div>
 
       {/* Hobbies & Interests */}
-      <div className="mt-5 px-4">
-        <h2 className="text-xl font-semibold mb-3 flex items-center justify-between">Hobbies & Interests <div onClick={()=>navigate("/hobbiesandinterests")} className="text-xs pt-1">View All{'>'}</div></h2>
+      <div className="mt-5 px-4 md:px-12">
+        <h2 className="text-xl font-semibold mb-3 flex items-center justify-between md:text-2xl ">Hobbies & Interests <div onClick={()=>navigate("/hobbiesandinterests")} className="text-xs md:text-base pt-1">View All{'>'}</div></h2>
         {allLoading ? (
           <div className="spinner"> </div>
         ) : (
@@ -326,7 +326,7 @@ className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow
               .map((pic, index) => (
                 <div
                   key={pic._id || index}
-  className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow "                >
+  className="w-[100px] h-[100px] md:h-[150px] md:w-[150px] overflow flex-shrink-0 snap-center rounded shadow "                >
                   <img
                     src={pic.path}
                     alt={pic.productImage || "Today's Post"}
@@ -340,8 +340,8 @@ className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow
       </div>
 
       {/* Outdoor & Commercial */}
-      <div className="mt-5 px-4">
-        <h2 className="text-xl font-semibold mb-3 flex items-center justify-between">Outdoor & Commercial <div onClick={()=>navigate("/outdoorandcommercial")} className="text-xs pt-1">View All{'>'}</div></h2>
+      <div className="mt-5 px-4 md:px-12">
+        <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center justify-between">Outdoor & Commercial <div onClick={()=>navigate("/outdoorandcommercial")} className="text-xs pt-1 md:text-base">View All{'>'}</div></h2>
         {allLoading ? (
           <div className="spinner"> </div>
         ) : (
@@ -351,7 +351,7 @@ className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow
               .map((pic, index) => (
                 <div
                   key={pic._id || index}
-  className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow "                >
+  className="w-[100px] h-[100px] md:h-[150px] md:w-[150px] overflow flex-shrink-0 snap-center rounded shadow "                >
                   <img
                     src={pic.path}
                     alt={pic.productImage || "Today's Post"}
@@ -365,8 +365,8 @@ className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow
       </div>
 
       {/* Artistic & Abstract */}
-      <div className="mt-5 px-4">
-        <h2 className="text-xl font-semibold mb-3 flex items-center justify-between">Artistic & Abstract <div onClick={()=>navigate("/artisticandabstract")} className="text-xs pt-1">View All{'>'}</div></h2>
+      <div className="mt-5 px-4 md:px-12">
+        <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center justify-between">Artistic & Abstract <div onClick={()=>navigate("/artisticandabstract")} className="text-xs pt-1 md:text-base">View All{'>'}</div></h2>
         {allLoading ? (
           <div className="spinner"> </div>
         ) : (
@@ -376,7 +376,7 @@ className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow
               .map((pic, index) => (
                 <div
                   key={pic._id || index}
-  className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow "                >
+  className="w-[100px] h-[100px] md:h-[150px] md:w-[150px] overflow flex-shrink-0 snap-center rounded shadow "                >
                   <img
                     src={pic.path}
                     alt={pic.productImage || "Today's Post"}
@@ -390,8 +390,8 @@ className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow
       </div>
 
       {/* Religious & Cultural */}
-      <div className="mt-5 px-4">
-        <h2 className="text-xl font-semibold mb-3 flex items-center justify-between">Religious & Cultural <div onClick={()=>navigate("/religiousandcultural")} className="text-xs pt-1">View All{'>'}</div></h2>
+      <div className="mt-5 px-4 md:px-12">
+        <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center justify-between">Religious & Cultural <div onClick={()=>navigate("/religiousandcultural")} className="text-xs pt-1 md:text-base">View All{'>'}</div></h2>
         {allLoading ? (
           <div className="spinner"> </div>
         ) : (
@@ -401,7 +401,7 @@ className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow
               .map((pic, index) => (
                 <div
                   key={pic._id || index}
-  className="w-[100px] h-[100px] overflow flex-shrink-0 snap-center rounded shadow "                >
+  className="w-[100px] h-[100px] md:h-[150px] md:w-[150px] overflow flex-shrink-0 snap-center rounded shadow "                >
                   <img
                     src={pic.path}
                     alt={pic.productImage || "Today's Post"}

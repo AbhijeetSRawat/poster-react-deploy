@@ -116,9 +116,9 @@ const AdminProducts = () => {
             className="fixed inset-0 bg-black bg-opacity-30 z-40"
             onClick={() => setSidebarOpen(false)}
           />
-          <div className={`fixed top-0 left-0 w-64 h-full z-50 ${darkMode ? 'bg-slate-800 text-white' : 'bg-white text-gray-800'} shadow-lg`}>
-            <div className="flex items-center justify-between p-4 border-b border-gray-300">
-              <h2 className="text-lg font-bold">Admin</h2>
+          <div className={`fixed top-0 left-0 w-64 h-full z-50 md:text-xl ${darkMode ? 'bg-slate-800 text-white' : 'bg-white text-gray-800'} shadow-lg`}>
+            <div className="flex items-center justify-between p-4 border-b border-gray-300 ">
+              <h2 className="text-lg font-bold md:text-2xl">Admin</h2>
               <button onClick={() => setSidebarOpen(false)} className="text-lg">×</button>
             </div>
             <nav className="flex flex-col gap-1 p-4">
@@ -134,10 +134,10 @@ const AdminProducts = () => {
                 <FaBoxOpen />
                 <span>Products</span>
               </button>
-              <button onClick={() => navigate('/')} className="flex items-center gap-3 p-2 hover:bg-red-500 rounded">
-                <FaSignOutAlt />
-                <span>Logout</span>
-              </button>
+               <button onClick={() => navigate('/')} className="flex items-center gap-3 p-2 hover:bg-red-500 rounded">
+                              <FaSignOutAlt />
+                              <span>Logout</span>
+                            </button>
             </nav>
           </div>
         </>
@@ -149,17 +149,17 @@ const AdminProducts = () => {
           <button onClick={() => setSidebarOpen(true)} className="text-teal-600">
             <FaBars size={24} />
           </button>
-          <h1 className="text-2xl font-bold">Manage Products</h1>
+          <h1 className="text-2xl font-bold md:text-3xl">Manage Products</h1>
           <button onClick={() => setDarkMode(!darkMode)}>
             {darkMode ? <MdLightMode size={24} className="text-yellow-300" /> : <MdDarkMode size={24} className="text-gray-700" />}
           </button>
         </div>
 
-        <div className="flex gap-4 mb-8">
-          <button onClick={() => setActiveView('add')} className="bg-green-600 text-white px-4 py-2 rounded flex items-center gap-2">
+        <div className="flex justify-center gap-4 mb-8">
+          <button onClick={() => setActiveView('add')} className="bg-green-600 text-white px-4 py-2 rounded flex items-center gap-2 md:text-xl">
             <FaPlus /> Add Product
           </button>
-          <button onClick={() => setActiveView('edit')} className="bg-blue-600 text-white px-4 py-2 rounded flex items-center gap-2">
+          <button onClick={() => setActiveView('edit')} className="bg-blue-600 text-white px-4 py-2 rounded flex items-center gap-2 md:text-xl">
             <FaEdit /> View / Edit Products
           </button>
         </div>
@@ -167,12 +167,12 @@ const AdminProducts = () => {
         {/* Add Product Form */}
         {activeView === 'add' && (
           <div className={card}>
-            <h2 className="text-lg font-semibold mb-4">Add Product</h2>
+            <h2 className="text-lg font-semibold mb-4 md:text-2xl">Add Product</h2>
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm mb-1">Category</label>
+                <label className="block text-sm mb-1 md:text-xl">Category</label>
                 <select value={formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  className="w-full p-2 border rounded">
+                  className="w-full p-2 border rounded md:text-xl">
                   <option className={`${darkMode ? 'bg-slate-800 text-white' : 'bg-white text-gray-800'}`} value="">-- Select Category --</option>
                   {categoryOptions.map((cat, i) => (
                     <option className={`${darkMode ? 'bg-slate-800 text-white' : 'bg-white text-gray-800'}`} key={i} value={cat}>{cat}</option>
@@ -180,22 +180,22 @@ const AdminProducts = () => {
                 </select>
               </div>
               <div>
-                <label className="block text-sm mb-1">Tags</label>
+                <label className="block text-sm mb-1 md:text-xl">Tags</label>
                 <input
                   type="text"
                   value={formData.tags}
                   onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
-                  className="w-full p-2 border rounded placeholder-green-400"
+                  className="w-full p-2 border rounded placeholder-green-400 md:text-xl"
                   placeholder="e.g. festive, hot deal"
                 />
               </div>
               <div className="md:col-span-2">
-                <label className="block text-sm mb-1">Upload Image</label>
-                <input type="file" onChange={handleFileChange} className="w-full p-2 border rounded" />
+                <label className="block text-sm mb-1 md:text-xl">Upload Image</label>
+                <input type="file" onChange={handleFileChange} className="w-full p-2 border rounded md:text-xl" />
               </div>
             </div>
            {(loading)?
-            (<div className="mt-4 bg-green-600 w-[40vw] hover:bg-green-700 text-white px-4 py-2 rounded flex justify-center"><div className='loader flex justify-center'></div></div>):( <button onClick={handleUpload} className="mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">
+            (<div className="mt-4 bg-green-600 w-[40vw]  hover:bg-green-700 text-white px-4 py-2 rounded flex justify-between"><div className='loader flex justify-between'></div></div>):( <button onClick={handleUpload} className="mt-4 bg-green-600 hover:bg-green-700 text-white md:text-2xl px-4 py-2 rounded">
               Upload Product
             </button>)
            }
@@ -205,10 +205,10 @@ const AdminProducts = () => {
         {/* Edit Product List */}
         {activeView === 'edit' && (
           <div className={card}>
-            <h2 className="text-lg font-semibold mb-4">Product List</h2>
+            <h2 className="text-lg font-semibold mb-4 md:text-3xl">Product List</h2>
             <table className="w-full table-auto text-sm">
               <thead>
-                <tr className="bg-green-700 text-white">
+                <tr className="bg-green-700 text-white md:text-lg">
                   <th className="text-left p-2">Image</th>
                   <th className="text-left p-2">Category</th>
                                   <th className="text-left p-2">Action</th>
@@ -224,11 +224,11 @@ const AdminProducts = () => {
                       <span className="text-sm text-gray-400 italic">No image</span>
                     )}
                   </td>
-                  <td className="p-2">{prod.category}</td>
+                  <td className="p-2 md:text-lg">{prod.category}</td>
                   <td className="p-2">
                     <button
                       onClick={() => openEditModal(prod)}
-                      className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded"
+                      className="bg-blue-600 hover:bg-blue-700 text-white md:text-xl px-3 py-1 rounded"
                     >
                       Edit
                     </button>
@@ -251,10 +251,10 @@ const AdminProducts = () => {
 {editProduct && (
   <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-40 z-50">
     <div className={`${card} w-full max-w-md`}>
-      <h3 className="text-lg font-bold mb-4">Edit Product</h3>
+      <h3 className="text-lg font-bold mb-4 md:text-2xl">Edit Product</h3>
       <div className="space-y-3">
 
-        <label className="block text-sm">Product Name</label>
+        <label className="block text-sm md:text-xl">Product Name</label>
         <input
           type="text"
           value={editProduct.productName || ''}
@@ -262,7 +262,7 @@ const AdminProducts = () => {
           className="w-full p-2 border rounded"
         />
 
-        <label className="block text-sm">Price</label>
+        <label className="block text-sm md:text-xl">Price</label>
         <input
           type="number"
           value={editProduct.price || ''}
@@ -270,7 +270,7 @@ const AdminProducts = () => {
           className="w-full p-2 border rounded"
         />
 
-        <label className="block text-sm">Offer On Price</label>
+        <label className="block text-sm md:text-xl">Offer On Price</label>
         <input
           type="number"
           value={editProduct.offerOnPrice || ''}
@@ -278,7 +278,7 @@ const AdminProducts = () => {
           className="w-full p-2 border rounded"
         />
 
-        <label className="block text-sm">Category</label>
+        <label className="block text-sm md:text-xl">Category</label>
         <select
           value={editProduct.category}
           onChange={(e) => handleEditChange('category', e.target.value)}
@@ -291,7 +291,7 @@ const AdminProducts = () => {
           ))}
         </select>
 
-        <label className="block text-sm">Rating</label>
+        <label className="block text-sm md:text-xl">Rating</label>
         <input
           type="number"
           max="5"
@@ -302,7 +302,7 @@ const AdminProducts = () => {
           className="w-full p-2 border rounded"
         />
 
-        <label className="block text-sm">New Image (optional)</label>
+        <label className="block text-sm md:text-xl">New Image (optional)</label>
         <input
           type="file"
           onChange={(e) => handleEditChange('newImage', e.target.files[0])}
@@ -312,13 +312,13 @@ const AdminProducts = () => {
         <div className="flex justify-between items-center pt-2">
           <button
             onClick={handleProductUpdate}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded flex items-center gap-2"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded flex items-center gap-2 md:text-2xl"
           >
             <FaSave /> Save Changes
           </button>
           <button
             onClick={() => setEditProduct(null)}
-            className="text-red-500 hover:text-red-600 text-sm flex items-center gap-1"
+            className="text-red-500 hover:text-red-600 text-sm flex items-center gap-1 md:text-2xl"
           >
             <FaTimes /> Cancel
           </button>

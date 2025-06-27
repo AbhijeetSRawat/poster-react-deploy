@@ -82,13 +82,13 @@ const Custom = ({ mode, setMode }) => {
   };
 
   return (
-    <div className={`min-h-screen pt-16 pb-20 px-4 ${mode ? 'bg-blue-100 text-black' : 'bg-slate-900 text-white'}`}>
+    <div className={`min-h-screen pt-16 pb-20 px-4 md:pt-28 ${mode ? 'bg-blue-100 text-black' : 'bg-slate-900 text-white'}`}>
       <Heading mode={mode} setMode={setMode} />
-      <h2 className="text-2xl font-bold text-center py-6">Poster Customizer</h2>
+      <h2 className="text-2xl font-bold text-center py-6 md:text-4xl">Poster Customizer</h2>
 
       {/* Uploads */}
       <div className="flex flex-wrap gap-4 justify-center mb-6">
-        <label htmlFor="imageUpload" className="bg-teal-600 px-6 py-2 rounded text-white cursor-pointer">
+        <label htmlFor="imageUpload" className="bg-teal-600 px-6 py-2 rounded text-white md:text-2xl cursor-pointer">
           Upload Main Image
         </label>
         <input type="file" id="imageUpload" hidden accept="image/*" onChange={(e) => {
@@ -96,7 +96,7 @@ const Custom = ({ mode, setMode }) => {
           if (file) setMainImage(URL.createObjectURL(file));
         }} />
 
-        <label htmlFor="logoUpload1" className="bg-teal-600 px-6 py-2 rounded text-white cursor-pointer">
+        <label htmlFor="logoUpload1" className="bg-teal-600 px-6 py-2 rounded text-white md:text-2xl cursor-pointer">
           Upload Logo
         </label>
         <input type="file" id="logoUpload1" hidden accept="image/*" onChange={(e) => {
@@ -104,7 +104,7 @@ const Custom = ({ mode, setMode }) => {
           if (file) setLogo1(file);
         }} />
 
-        <label htmlFor="logoUpload2" className="bg-teal-600 px-6 py-2 rounded text-white cursor-pointer">
+        <label htmlFor="logoUpload2" className="bg-teal-600 px-6 py-2 rounded text-white md:text-2xl cursor-pointer">
           Upload Footer
         </label>
         <input type="file" id="logoUpload2" hidden accept="image/*" onChange={(e) => {
@@ -114,8 +114,8 @@ const Custom = ({ mode, setMode }) => {
       </div>
 
       {/* Canvas */}
-      <div className="flex justify-center mb-10">
-        <canvas ref={canvasRef} className="bg-white rounded shadow border max-w-full" />
+      <div className="flex justify-center my-10">
+        <canvas ref={canvasRef} className="bg-white rounded shadow border max-w-full md:w-[80vw]" />
       </div>
 
       {/* Manual Position Controls */}
@@ -127,7 +127,7 @@ const Custom = ({ mode, setMode }) => {
             placeholder={`Logo1 ${field}`}
             value={logo1Pos[field]}
             onChange={(e) => setLogo1Pos({ ...logo1Pos, [field]: e.target.value })}
-            className="p-2  rounded border"
+            className="p-2  rounded border md:h-[5vh] md:text-xl"
           />
         ))}
         {['x', 'y', 'width', 'height'].map((field) => (
@@ -137,17 +137,17 @@ const Custom = ({ mode, setMode }) => {
             placeholder={`Footer ${field}`}
             value={logo2Pos[field]}
             onChange={(e) => setLogo2Pos({ ...logo2Pos, [field]: e.target.value })}
-            className="p-2  rounded border"
+            className="p-2  rounded border  md:h-[5vh] md:text-xl"
           />
         ))}
       </div>
 
       {/* Action Buttons */}
       <div className="flex justify-center gap-6 mt-6">
-        <button onClick={drawCanvas} className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded">
+        <button onClick={drawCanvas} className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 md:text-3xl rounded">
           Customize
         </button>
-        <button onClick={handleDownload} className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded">
+        <button onClick={handleDownload} className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 md:text-3xl rounded">
           Download
         </button>
       </div>

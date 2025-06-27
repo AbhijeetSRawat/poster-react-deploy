@@ -61,9 +61,9 @@ const Heading = ({ mode, setMode }) => {
     <div className="fixed top-0 left-0 w-full z-50 bg-inherit shadow">
       <div className="w-full h-[10vh] px-4 sm:px-6 flex justify-between items-center">
         <div>
-          <div className="flex gap-2 text-xs items-center font-bold">
+          <div className="flex gap-2 text-xs items-center font-bold md:text-xl">
             Your Business
-            <div className="bg-yellow-500 min-w-[17vw] min-h-[3vh] flex justify-center text-white items-center rounded cursor-pointer">
+            <div className="bg-yellow-500 min-w-[17vw] min-h-[3vh] flex justify-center text-white items-center rounded cursor-pointer ">
               {!userEmail ? (
                 <div onClick={() => navigate('/signup')}>SignUp</div>
               ) : subscribed === true || subscribed === 'true' ? (
@@ -73,7 +73,7 @@ const Heading = ({ mode, setMode }) => {
               )}
             </div>
           </div>
-          <div className="font-bold">
+          <div className="font-bold md:text-xl">
             {localStorage.getItem('business') || "Business"}
           </div>
         </div>

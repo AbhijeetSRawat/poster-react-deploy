@@ -100,14 +100,14 @@ const ProfilePage = ({ mode, setMode }) => {
     <div className={`min-h-screen pt-16 ${mode ? "bg-blue-300 text-gray-700" : "bg-slate-900 text-gray-300"}`}>
       <Heading mode={mode} setMode={setMode} />
 
-      <div className={`max-w-md flex flex-col items-center p-6 mt-10 mx-5 rounded-xl shadow-2xl ${mode ? "bg-blue-200 shadow-blue-900" : "bg-slate-700 shadow-blue-500"}`}>
-        <h2 className={`text-xl font-bold mb-4 ${mode ? "text-black" : "text-white"}`}>
+      <div className={`max-w-md flex flex-col items-center p-6 mt-10 mx-5 rounded-xl shadow-2xl md:mt-28 md:max-w-[85vw] md:mx-auto ${mode ? "bg-blue-200 shadow-blue-900" : "bg-slate-700 shadow-blue-500"}`}>
+        <h2 className={`text-xl font-bold mb-4 md:text-3xl ${mode ? "text-black" : "text-white"}`}>
           {editMode ? "Edit Profile" : "My Profile"}
         </h2>
 
         {!editMode ? (
           <>
-            <div className="w-full space-y-2 text-left text-sm">
+            <div className="w-full space-y-2 text-left text-sm md:text-xl">
               <p><strong>First Name:</strong> {form.firstname || "N/A"}</p>
               <p><strong>Last Name:</strong> {form.lastname || "N/A"}</p>
               <p><strong>Email:</strong> {form.email || "N/A"}</p>
@@ -128,17 +128,17 @@ const ProfilePage = ({ mode, setMode }) => {
 
             <button
               onClick={() => setEditMode(true)}
-              className="bg-yellow-500 mt-6 px-4 py-2 rounded text-white font-semibold"
+              className="bg-yellow-500 mt-6 px-4 py-2 rounded text-white font-semibold md:text-2xl"
             >
               Edit Profile
             </button>
           </>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-3 w-full">
-            <input type="text" name="address" placeholder="Address" value={form.address} onChange={handleChange} className="w-full p-2 border rounded placeholder-gray-400" required />
-            <textarea name="about" placeholder="About" value={form.about} onChange={handleChange} className="w-full p-2 border rounded placeholder-gray-400" required />
-             <input type="text" name="business" placeholder="Business" value={form.business} onChange={handleChange} className="w-full p-2 border rounded placeholder-gray-400" required />
-            <input type="number" name="age" placeholder="Age" value={form.age} onChange={handleChange} className="w-full p-2 border rounded placeholder-gray-400" required />
+            <input type="text" name="address" placeholder="Address" value={form.address} onChange={handleChange} className="w-full p-2 border rounded placeholder-gray-400 md:h-[5vh] md:text-xl" required />
+            <textarea name="about" placeholder="About" value={form.about} onChange={handleChange} className="w-full p-2 border rounded placeholder-gray-400 md:h-[5vh] md:text-xl" required />
+             <input type="text" name="business" placeholder="Business" value={form.business} onChange={handleChange} className="w-full p-2 border rounded placeholder-gray-400 md:h-[5vh] md:text-xl" required />
+            <input type="number" name="age" placeholder="Age" value={form.age} onChange={handleChange} className="w-full p-2 border rounded placeholder-gray-400 md:h-[5vh] md:text-xl" required />
             <select name="gender" value={form.gender} onChange={handleChange} className="w-full p-2 border rounded" required>
               <option value="">Select Gender</option>
               <option value="male">Male</option>
@@ -154,7 +154,7 @@ const ProfilePage = ({ mode, setMode }) => {
 
             <input type="file" accept="image/*" name="logo" onChange={handleChange} className="w-full p-2 border rounded" />
 
-            <div className="flex gap-3">
+            <div className="flex gap-3 md:text-2xl">
               <button type="submit" disabled={loading} className={`w-full py-2 rounded text-white font-semibold ${loading ? "bg-gray-400" : "bg-green-600 hover:bg-green-700"}`}>
                 {loading ? "Saving..." : "Save"}
               </button>
@@ -165,7 +165,7 @@ const ProfilePage = ({ mode, setMode }) => {
           </form>
         )}
 
-        <div onClick={() => navigate("/")} className="mt-6 underline cursor-pointer">
+        <div onClick={() => navigate("/")} className="mt-6 underline cursor-pointer md:text-xl">
           Go to HomePage
         </div>
       </div>

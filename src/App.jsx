@@ -23,8 +23,9 @@ import AboutUs from './pages/AboutUs';
 import AdminDashboard from './pages/Admin_Dashboard';
 import AdminUsers from './pages/AdminUsers';
 import AdminProducts from './pages/AdminProducts';
-import EnterOtp from './pages/EnterOtp';
 import ForgetPassword from './pages/ForgetPassword';
+import EnterOtp from './pages/EnterOtp';
+import AddReferral from './pages/AdminAddReferal';
 
 
 const App = () => {
@@ -55,15 +56,16 @@ const App = () => {
         <Route path='/religiousandcultural' element={<ReligiousAndCultural mode={mode} setMode={setMode} />} />
         <Route path='/signup' element={<SignUp mode={mode} setMode={setMode} />} />
         <Route path='/login' element={<Login mode={mode} setMode={setMode} />} />
-        <Route path="/forget-password" element={<ForgetPassword mode={mode} setMode={setMode} />} />
-          <Route path="/enter-otp" element={<EnterOtp mode={mode} setMode={setMode} />} />
         <Route path='/searchpage' element={<SearchPage mode={mode} tagvalue={tagvalue} setTagvalue={setTagvalue} searchValue={searchValue} setSearchValue={setSearchValue} setMode={setMode} />} />
         <Route path='/subscribe' element={<SubscriptionPage mode={mode} setMode={setMode} />} />
         <Route path='/custom' element={<Custom mode={mode} setMode={setMode}/>}/>
          <Route path='/about' element={<AboutUs mode={mode} setMode={setMode}/>}/>
          <Route path='/admindashboard' element = {<AdminDashboard/>}/>
          <Route path='/adminusers' element={<AdminUsers/>}/>
-         <Route path='/adminproducts' element={<AdminProducts/>}/>
+         <Route path='/addreferal' element={<AddReferral/>}/>
+         <Route path='/adminproducts' element={<AdminProducts />}/>
+         <Route path="/forget-password" element={<ForgetPassword mode={mode} setMode={setMode} />} />
+          <Route path="/enter-otp" element={<EnterOtp mode={mode} setMode={setMode} />} />
         <Route path="*" element={<>Not Found</>} />
       </Routes>
     </div>

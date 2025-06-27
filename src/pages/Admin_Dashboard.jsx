@@ -15,7 +15,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  
+
   const fetchData = async () => {
     try {
       const userRes = await fetch("https://poster-react-deploy.onrender.com/api/admin/view/users");
@@ -104,7 +104,7 @@ const AdminDashboard = () => {
   const cardStyle = darkMode ? 'bg-slate-700 text-white' : 'bg-white text-black';
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen pb-10">
       {/* Sidebar Overlay */}
       {sidebarOpen && (
         <>
@@ -112,9 +112,9 @@ const AdminDashboard = () => {
             className="fixed inset-0 bg-black bg-opacity-30 z-40"
             onClick={() => setSidebarOpen(false)}
           />
-          <div className={`fixed top-0 left-0 w-64 h-full z-50 transition-transform duration-300 ${darkMode ? 'bg-slate-800 text-white' : 'bg-white text-gray-800'} shadow-lg`}>
+          <div className={`fixed top-0 left-0 w-64 h-full z-50 transition-transform duration-300 md:text-xl ${darkMode ? 'bg-slate-800 text-white' : 'bg-white text-gray-800'} shadow-lg`}>
             <div className="flex items-center justify-between p-4 border-b border-gray-300">
-              <h2 className="text-lg font-bold">Admin</h2>
+              <h2 className="text-lg font-bold md:text-3xl">Admin</h2>
               <button onClick={() => setSidebarOpen(false)} className="text-lg">×</button>
             </div>
             <nav className="flex flex-col gap-1 p-4">
@@ -129,6 +129,10 @@ const AdminDashboard = () => {
               <button onClick={() => navigate('/adminproducts')} className="flex items-center gap-3 p-2 hover:bg-teal-600 rounded">
                 <FaBoxOpen />
                 <span>Products</span>
+              </button>
+               <button onClick={() => navigate('/addreferal')} className="flex items-center gap-3 p-2 hover:bg-teal-600 rounded">
+                <FaUsers />
+                <span>Add Referal</span>
               </button>
               <button onClick={() => navigate('/')} className="flex items-center gap-3 p-2 hover:bg-red-500 rounded">
                 <FaSignOutAlt />
@@ -148,7 +152,7 @@ const AdminDashboard = () => {
           >
             ☰
           </button>
-          <h1 className="text-2xl font-bold">Admin Dashboard</h1>
+          <h1 className="text-2xl font-bold md:text-3xl md:mb-6">Admin Dashboard</h1>
           <button onClick={() => setDarkMode(!darkMode)}>
             {darkMode ? (
               <MdLightMode size={28} className="text-yellow-300 hover:text-yellow-400" />
@@ -173,13 +177,13 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className={`${cardStyle} shadow rounded p-4`}>
-            <h3 className="text-md font-semibold text-center mb-3">Users Per Month</h3>
-            <canvas id="userChart" height="260" />
+        <div className="grid gap-6 ">
+          <div className={`${cardStyle} shadow rounded p-4 w-[80vw] md:mx-auto`}>
+            <h3 className="text-md font-semibold text-center mb-3 md:text-3xl">Users Per Month</h3>
+            <canvas id="userChart" height="260" className='text-xl' />
           </div>
-          <div className={`${cardStyle} shadow rounded p-4`}>
-            <h3 className="text-md font-semibold text-center mb-3">Products Per Month</h3>
+          <div className={`${cardStyle} shadow rounded p-4 w-[80vw] md:mx-auto`}>
+            <h3 className="text-md font-semibold text-center mb-3 md:text-3xl">Products Per Month</h3>
             <canvas id="productChart" height="260" />
           </div>
         </div>

@@ -44,9 +44,9 @@ const AdminUsers = () => {
       {sidebarOpen && (
         <>
           <div className="fixed inset-0 bg-black bg-opacity-30 z-40" onClick={() => setSidebarOpen(false)} />
-          <div className={`fixed top-0 left-0 w-64 h-full z-50 ${darkMode ? 'bg-slate-800 text-white' : 'bg-white text-gray-800'} shadow-lg`}>
+          <div className={`fixed top-0 left-0 w-64 h-full z-50 md:text-xl ${darkMode ? 'bg-slate-800 text-white' : 'bg-white text-gray-800'} shadow-lg`}>
             <div className="flex items-center justify-between p-4 border-b">
-              <h2 className="text-lg font-bold">Admin</h2>
+              <h2 className="text-lg font-bold md:text-2xl">Admin</h2>
               <button onClick={() => setSidebarOpen(false)} className="text-lg">×</button>
             </div>
             <nav className="flex flex-col gap-1 p-4">
@@ -80,7 +80,7 @@ const AdminUsers = () => {
           >
             ☰ 
           </button>
-          <h1 className="text-2xl font-bold">Users</h1>
+          <h1 className="text-2xl font-bold md:text-3xl">Users</h1>
           <button onClick={() => setDarkMode(!darkMode)}>
             {darkMode ? (
               <MdLightMode size={28} className="text-yellow-300 hover:text-yellow-400" />
@@ -95,15 +95,15 @@ const AdminUsers = () => {
           <table className="min-w-full divide-y divide-gray-200 text-sm">
             <thead className={darkMode ? "bg-slate-700 text-white" : "bg-gray-100 text-gray-600"}>
               <tr>
-                <th className="px-6 py-3 text-left uppercase font-semibold tracking-wider">Email</th>
-                <th className="px-6 py-3 text-left uppercase font-semibold tracking-wider">Action</th>
+                <th className="px-6 py-3 text-left uppercase font-semibold tracking-wider md:text-2xl">Email</th>
+                <th className="px-6 py-3 text-left uppercase font-semibold tracking-wider md:text-2xl">Action</th>
               </tr>
             </thead>
             <tbody className={darkMode ? "divide-y divide-gray-600" : "bg-white divide-y divide-gray-200"}>
               {users.map(user => (
                 <tr key={user._id}>
-                  <td className="px-6 py-3">{user.email}</td>
-                  <td className="px-6 py-3">
+                  <td className="px-6 py-3 md:text-xl">{user.email}</td>
+                  <td className="px-6 py-3 md:text-xl">
                     <button
                       onClick={() => openModal(user)}
                       className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded"
@@ -127,8 +127,8 @@ const AdminUsers = () => {
       {showModal && selectedUser && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[60]">
           <div className={`${cardStyle} max-w-md w-full rounded shadow-lg p-6 relative`}>
-            <h2 className="text-lg font-bold mb-4">User Details</h2>
-            <ul className="space-y-2 text-sm">
+            <h2 className="text-lg font-bold mb-4 md:text-3xl">User Details</h2>
+            <ul className="space-y-2 text-sm md:text-xl">
               <li><strong>Name:</strong> {selectedUser.firstName} {selectedUser.lastName || ""}</li>
               <li><strong>Email:</strong> {selectedUser.email}</li>
               <li><strong>Phone:</strong> {selectedUser.number || "N/A"}</li>

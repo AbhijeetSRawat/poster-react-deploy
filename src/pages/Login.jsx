@@ -96,25 +96,25 @@ const Login = ({ mode, setMode }) => {
       <Heading mode={mode} setMode={setMode}/>
       {/* Login Form */}
       <div
-        className={`max-w-md p-6 flex flex-col items-center mt-10 mx-2 rounded-xl shadow-2xl ${
+        className={`max-w-md p-6 flex flex-col items-center mt-10 mx-2 rounded-xl shadow-2xl md:mx-auto md:mt-40 md:max-w-2xl md:rounded-3xl ${
           mode ? "bg-blue-200 shadow-blue-900" : "bg-slate-700 shadow-blue-500"
         }`}
       >
         <h2
-          className={`text-xl font-bold mb-4 ${
+          className={`text-xl font-bold mb-4 md:text-3xl ${
             mode ? "text-black" : "text-white"
           }`}
         >
           Login
         </h2>
-        <form onSubmit={handleLogin} className="space-y-3">
+        <form onSubmit={handleLogin} className="space-y-3 md:w-full">
           <input
             type="email"
             name="email"
             placeholder="Email"
             value={form.email}
             onChange={handleChange}
-            className="w-full p-2 border rounded placeholder-gray-400"
+            className="w-full p-2 md:h-[5vh] md:text-xl border rounded placeholder-gray-400"
             required
           />
           <input
@@ -123,29 +123,27 @@ const Login = ({ mode, setMode }) => {
             placeholder="Password"
             value={form.password}
             onChange={handleChange}
-            className="w-full p-2 border rounded placeholder-gray-400"
+            className="w-full p-2 md:h-[5vh] md:text-xl border rounded placeholder-gray-400"
             required
           />
-
-            <div onClick={()=>navigate('/forget-password')} className="w-full flex justify-end">
+          <div onClick={()=>navigate('/forget-password')} className="w-full flex justify-end md:text-xl">
             Forget Password?
           </div>
-
           {!loading ? (
             <button
               type="submit"
-              className="bg-green-600 text-white px-4 py-2 rounded w-full"
+              className="bg-green-600 md:h-[6vh] text-white md:text-3xl px-4 py-2 rounded w-full"
             >
               Login
             </button>
           ) : (
-            <div className="bg-green-600 text-white flex justify-center items-center h-[6vh] rounded w-full">
+            <div className="bg-green-600 md:h-[6vh] text-white flex justify-center items-center h-[6vh] rounded w-full">
               <div className="loader"></div>
             </div>
           )}
         </form>
 
-        <div className="mt-5 underline " onClick={()=>navigate('/signup')}>
+        <div className="mt-5 underline md:text-xl " onClick={()=>navigate('/signup')}>
           Create an acoount
         </div>
       </div>
