@@ -23,6 +23,8 @@ import AboutUs from './pages/AboutUs';
 import AdminDashboard from './pages/Admin_Dashboard';
 import AdminUsers from './pages/AdminUsers';
 import AdminProducts from './pages/AdminProducts';
+import EnterOtp from './pages/EnterOtp';
+import ForgetPassword from './pages/ForgetPassword';
 
 
 const App = () => {
@@ -53,6 +55,8 @@ const App = () => {
         <Route path='/religiousandcultural' element={<ReligiousAndCultural mode={mode} setMode={setMode} />} />
         <Route path='/signup' element={<SignUp mode={mode} setMode={setMode} />} />
         <Route path='/login' element={<Login mode={mode} setMode={setMode} />} />
+        <Route path="/forget-password" element={<ForgetPassword mode={mode} setMode={setMode} />} />
+          <Route path="/enter-otp" element={<EnterOtp mode={mode} setMode={setMode} />} />
         <Route path='/searchpage' element={<SearchPage mode={mode} tagvalue={tagvalue} setTagvalue={setTagvalue} searchValue={searchValue} setSearchValue={setSearchValue} setMode={setMode} />} />
         <Route path='/subscribe' element={<SubscriptionPage mode={mode} setMode={setMode} />} />
         <Route path='/custom' element={<Custom mode={mode} setMode={setMode}/>}/>

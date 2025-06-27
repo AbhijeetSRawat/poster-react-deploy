@@ -15,7 +15,7 @@ import { cloudinaryConnect } from './config/cloudinary.js';
 
 dotenv.config();
 
-app.use(cors({ origin: 'https://aesthetic-cat-f30d3d.netlify.app',credentials:true }));
+app.use(cors({ origin: 'https://poster-react-deploy.vercel.app',credentials:true }));
 
 
 //Middleware

@@ -28,7 +28,7 @@ const app = express();
 
 // Middleware
 
-app.use(cors({ origin: 'https://aesthetic-cat-f30d3d.netlify.app',credentials:true }));
+app.use(cors({ origin: 'https://poster-react-deploy.vercel.app',credentials:true }));
 app.use(cookieParser());
 app.use('/uploads', express.static('uploads'));
 app.use(express.json());
