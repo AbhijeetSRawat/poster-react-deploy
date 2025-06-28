@@ -1,7 +1,7 @@
 
 import express from "express"
 const router = express.Router();
-
+import { upload } from "../utils/multer.js";
 import { getUserDetails } from "../controllers/getUserDetails.js";
 import { tokenMiddleware } from "../middleware/auth.middleware.js";
 import { subscribe } from "../controllers/subsciption.js";
@@ -12,12 +12,15 @@ import { requestOtpController } from "../controllers/requestOtpController.js";
 import { verifyOtpController } from "../controllers/verifyOtpContrroller.js";
 import { profile } from "../controllers/profile.js";
 import { downloadWithLogo } from "../controllers/downloadWithLogo.js";
-import { upload } from "../utils/multer.js";
+
 
 
 router.post('/request-otp', requestOtpController);
 router.post('/verify-otp', verifyOtpController);
-router.post('/profile',upload.single('logo'), tokenMiddleware,profile)
+router.post('/profile',upload.fields([
+    { name: 'logo', maxCount: 1 },
+    { name: 'footer', maxCount: 1 },
+  ]),tokenMiddleware,profile)
 
 
 router.get("/getUserDetails",tokenMiddleware,getUserDetails);

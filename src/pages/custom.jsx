@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Heading from '../components/core/heading';
+import toast from 'react-hot-toast';
+import axios from 'axios';
 
 const Custom = ({ mode, setMode }) => {
   const canvasRef = useRef(null);
@@ -7,6 +9,9 @@ const Custom = ({ mode, setMode }) => {
   const [mainImage, setMainImage] = useState(null);
   const [logo1, setLogo1] = useState(null);
   const [logo2, setLogo2] = useState(null);
+  const [user,setUser] = useState({});
+
+
 
   const [logo1Pos, setLogo1Pos] = useState({ x: 20, y: 20, width: 255, height: 255 });
   const [logo2Pos, setLogo2Pos] = useState({ x: 50, y: 980, width: 1800, height: 150 });
@@ -74,11 +79,45 @@ const Custom = ({ mode, setMode }) => {
     drawCanvas();
   }, [mainImage, logo1, logo2, logo1Pos, logo2Pos]);
 
+     const token = JSON.parse(localStorage.getItem("token"));
+
+  const fetchProfile = async () => {
+    try {
+      const res = await axios.get("https://poster-react-deploy.onrender.com/getUserDetails", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      console.log(res);
+
+      setUser(res.data.data);
+
+    } catch (error) {
+      console.error("Fetch profile error:", error);
+      toast.error("Failed to fetch profile");
+    }
+  };
+
+  useEffect(() => {
+    fetchProfile();
+  }, []);
+
   const handleDownload = () => {
-    const link = document.createElement('a');
-    link.download = 'customized-poster.jpg';
-    link.href = canvasRef.current.toDataURL('image/jpeg');
-    link.click();
+    if(!token){
+      toast.error("Please LogIn first")
+    }
+    else{
+      if(!user.subscribed){
+          toast.error("Subscribe please for this feature")
+      }
+      else{
+        const link = document.createElement('a');
+        link.download = 'customized-poster.jpg';
+        link.href = canvasRef.current.toDataURL('image/jpeg');
+        link.click();
+        
+        toast.success("download successfull")
+      }
+    }
   };
 
   return (
@@ -119,8 +158,10 @@ const Custom = ({ mode, setMode }) => {
       </div>
 
       {/* Manual Position Controls */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-2">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-4">
         {['x', 'y', 'width', 'height'].map((field) => (
+          <>
+          <label htmlFor={field} className='flex items-center text-xl md:text-2xl font-semibold'>{`Logo1 ${field} :`}</label>
           <input
             key={field}
             type="number"
@@ -129,8 +170,12 @@ const Custom = ({ mode, setMode }) => {
             onChange={(e) => setLogo1Pos({ ...logo1Pos, [field]: e.target.value })}
             className="p-2  rounded border md:h-[5vh] md:text-xl"
           />
+          </>
         ))}
         {['x', 'y', 'width', 'height'].map((field) => (
+          <>
+          <label htmlFor={field} className='flex items-center text-xl md:text-2xl font-semibold'>{`Footer ${field} :`}</label>
+
           <input
             key={field}
             type="number"
@@ -139,14 +184,15 @@ const Custom = ({ mode, setMode }) => {
             onChange={(e) => setLogo2Pos({ ...logo2Pos, [field]: e.target.value })}
             className="p-2  rounded border  md:h-[5vh] md:text-xl"
           />
+          </>
         ))}
       </div>
 
       {/* Action Buttons */}
       <div className="flex justify-center gap-6 mt-6">
-        <button onClick={drawCanvas} className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 md:text-3xl rounded">
+        {/* <button onClick={drawCanvas} className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 md:text-3xl rounded">
           Customize
-        </button>
+        </button> */}
         <button onClick={handleDownload} className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 md:text-3xl rounded">
           Download
         </button>

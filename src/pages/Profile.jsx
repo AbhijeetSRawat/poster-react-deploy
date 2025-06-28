@@ -12,14 +12,17 @@ const ProfilePage = ({ mode, setMode }) => {
     email: "",
     address: "",
     about: "",
-    business:"",
+    business: "",
     age: "",
     gender: "",
     logo: null,
+    footer: null,
   });
 
-  const [preview, setPreview] = useState(null);
+  const [preview1, setPreview1] = useState(null);
+  const [preview2, setPreview2] = useState(null);
   const [profileImage, setProfileImage] = useState(null);
+  const [footerImage, setFooterImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const navigate = useNavigate();
@@ -27,27 +30,38 @@ const ProfilePage = ({ mode, setMode }) => {
   const token = JSON.parse(localStorage.getItem("token"));
 
   const fetchProfile = async () => {
+    if (!token) {
+      toast.error("You need to log in first");
+      navigate("/login");
+      return;
+    }
+
     try {
       const res = await axios.get("https://poster-react-deploy.onrender.com/getUserDetails", {
         headers: { Authorization: `Bearer ${token}` },
       });
+
       const user = res.data.data;
-      const profile = res.data.data.profile;
-      localStorage.setItem('business',profile?.business || "");
+      const profile = user.profile;
+
+      localStorage.setItem("business", profile?.business || "");
+
       setForm({
         firstname: user.firstName || "",
         lastname: user.lastName || "",
         number: user.number || "",
         email: user.email || "",
         address: profile?.address || "",
-        business:profile?.business||"",
+        business: profile?.business || "",
         about: profile?.about || "",
         age: profile?.age || "",
         gender: profile?.gender || "",
         logo: null,
+        footer: null,
       });
 
       setProfileImage(profile?.logo || null);
+      setFooterImage(profile?.footer || null);
     } catch (error) {
       console.error("Fetch profile error:", error);
       toast.error("Failed to fetch profile");
@@ -60,17 +74,27 @@ const ProfilePage = ({ mode, setMode }) => {
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    if (name === "logo") {
-      setForm({ ...form, logo: files[0] });
-      setPreview(URL.createObjectURL(files[0]));
+
+    if (name === "logo" && files.length > 0) {
+      const file = files[0];
+      setForm((prev) => ({ ...prev, logo: file }));
+      setPreview1(URL.createObjectURL(file));
+    } else if (name === "footer" && files.length > 0) {
+      const file = files[0];
+      setForm((prev) => ({ ...prev, footer: file }));
+      setPreview2(URL.createObjectURL(file));
     } else {
-      setForm({ ...form, [name]: name === "age" ? parseInt(value) : value });
+      setForm((prev) => ({
+        ...prev,
+        [name]: name === "age" ? parseInt(value, 10) || "" : value,
+      }));
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData();
+
     Object.entries(form).forEach(([key, val]) => {
       if (val !== null) data.append(key, val);
     });
@@ -118,11 +142,24 @@ const ProfilePage = ({ mode, setMode }) => {
               <p><strong>Age:</strong> {form.age || "N/A"}</p>
               <p><strong>Gender:</strong> {form.gender || "N/A"}</p>
               {profileImage && (
-                <img
-                  src={profileImage}
-                  alt="Profile"
-                  className="w-full h-48 object-contain rounded-lg shadow mt-4"
-                />
+                <>
+                  <p className="font-bold text-sm md:text-xl">Logo:</p>
+                  <img
+                    src={profileImage}
+                    alt="Profile"
+                    className="w-full h-48 object-contain rounded-lg shadow mt-2"
+                  />
+                </>
+              )}
+              {footerImage && (
+                <>
+                  <p className="font-bold text-sm md:text-xl">Footer:</p>
+                  <img
+                    src={footerImage}
+                    alt="Footer"
+                    className="w-full h-48 object-contain rounded-lg shadow mt-2"
+                  />
+                </>
               )}
             </div>
 
@@ -137,7 +174,7 @@ const ProfilePage = ({ mode, setMode }) => {
           <form onSubmit={handleSubmit} className="space-y-3 w-full">
             <input type="text" name="address" placeholder="Address" value={form.address} onChange={handleChange} className="w-full p-2 border rounded placeholder-gray-400 md:h-[5vh] md:text-xl" required />
             <textarea name="about" placeholder="About" value={form.about} onChange={handleChange} className="w-full p-2 border rounded placeholder-gray-400 md:h-[5vh] md:text-xl" required />
-             <input type="text" name="business" placeholder="Business" value={form.business} onChange={handleChange} className="w-full p-2 border rounded placeholder-gray-400 md:h-[5vh] md:text-xl" required />
+            <input type="text" name="business" placeholder="Business" value={form.business} onChange={handleChange} className="w-full p-2 border rounded placeholder-gray-400 md:h-[5vh] md:text-xl" required />
             <input type="number" name="age" placeholder="Age" value={form.age} onChange={handleChange} className="w-full p-2 border rounded placeholder-gray-400 md:h-[5vh] md:text-xl" required />
             <select name="gender" value={form.gender} onChange={handleChange} className="w-full p-2 border rounded" required>
               <option value="">Select Gender</option>
@@ -146,26 +183,40 @@ const ProfilePage = ({ mode, setMode }) => {
               <option value="other">Other</option>
             </select>
 
-            {preview && (
+            {preview1 && (
               <div className="mb-4">
-                <img src={preview} alt="Preview" className="w-full h-48 object-contain rounded-lg shadow" />
+                <img src={preview1} alt="Logo Preview" className="w-full h-48 object-contain rounded-lg shadow" />
               </div>
             )}
-
+            <label htmlFor="logo" className="text-base font-semibold md:text-xl">Logo:</label>
             <input type="file" accept="image/*" name="logo" onChange={handleChange} className="w-full p-2 border rounded" />
+
+            {preview2 && (
+              <div className="mb-4">
+                <img src={preview2} alt="Footer Preview" className="w-full h-48 object-contain rounded-lg shadow" />
+              </div>
+            )}
+            <label htmlFor="footer" className="text-base font-semibold md:text-xl">Footer:</label>
+            <input type="file" accept="image/*" name="footer" onChange={handleChange} className="w-full p-2 border rounded" />
 
             <div className="flex gap-3 md:text-2xl">
               <button type="submit" disabled={loading} className={`w-full py-2 rounded text-white font-semibold ${loading ? "bg-gray-400" : "bg-green-600 hover:bg-green-700"}`}>
                 {loading ? "Saving..." : "Save"}
               </button>
-              <button type="button" onClick={() => setEditMode(false)} className="w-full py-2 bg-red-500 hover:bg-red-600 text-white rounded font-semibold">
+ <button
+                type="button"
+                onClick={() => setEditMode(false)}
+                className="w-full py-2 bg-red-500 hover:bg-red-600 text-white rounded font-semibold"
+              >
                 Cancel
               </button>
             </div>
           </form>
         )}
-
-        <div onClick={() => navigate("/")} className="mt-6 underline cursor-pointer md:text-xl">
+        <div
+          onClick={() => navigate("/")}
+          className="mt-6 underline cursor-pointer md:text-xl"
+        >
           Go to HomePage
         </div>
       </div>

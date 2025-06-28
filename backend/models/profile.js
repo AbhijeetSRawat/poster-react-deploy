@@ -10,6 +10,9 @@ const profileSchema = new mongoose.Schema({
   logo:{
     type:String
   },
+  footer:{
+    type:String
+  },
   age:{
     type:Number
   },
