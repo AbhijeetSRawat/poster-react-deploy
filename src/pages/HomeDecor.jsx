@@ -95,13 +95,38 @@ const HomeDecor = ({ mode, setMode }) => {
             ctx.drawImage(footer, +footerPos.x, +footerPos.y, +footerPos.width, +footerPos.height);
             resolve();
           };
-        } else {
-          ctx.fillStyle = '#333';
-          ctx.font = `bold 20px ${fontFamily}`;
-          if (user.email) ctx.fillText(`Email: ${user.email}`, +footerPos.x, +footerPos.y + 30);
-          if (user.number) ctx.fillText(`Phone: ${user.number}`, +footerPos.x, +footerPos.y + 60);
-          resolve();
-        }
+        }else {
+  const footerHeight = Math.floor(canvas.height * 0.10);
+  
+  const footerY = canvas.height - footerHeight;
+
+  ctx.fillStyle = '#3B82F6'; // Tailwind's bg-blue-500
+  ctx.fillRect(0, footerY, canvas.width, footerHeight);
+
+  const paddingX = 30;
+  const paddingY = 10;
+  const spacing = 50;
+
+  let cursorX = paddingX;
+  const cursorY = footerY + paddingY;
+
+  ctx.font = `bold ${textPos.size}px ${fontFamily}`;
+  ctx.textBaseline = 'top';
+  ctx.fillStyle = textColor;
+
+  if (user.email) {
+    const emailText = `Email: ${user.email}`;
+    ctx.fillText(emailText, cursorX, cursorY);
+    cursorX += ctx.measureText(emailText).width + spacing;
+  }
+
+  if (user.number) {
+    const phoneText = `Phone: ${user.number}`;
+    ctx.fillText(phoneText, cursorX, cursorY);
+  }
+
+  resolve();
+}
       });
 
       Promise.all([drawLogo, drawFooter]).then(() => {
