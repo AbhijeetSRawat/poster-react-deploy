@@ -52,6 +52,14 @@ const HomeDecor = ({ mode, setMode }) => {
     fetchUserMedia();
   }, []);
 
+  useEffect(() => {
+      const savedImage = localStorage.getItem("selectedImage");
+      if (savedImage) {
+        setSelectedImage(savedImage);
+        localStorage.removeItem("selectedImage");
+      }
+    }, []);
+
   const reqData = allData.filter((pic) => pic.category === "Home Decor");
 
   useEffect(() => {

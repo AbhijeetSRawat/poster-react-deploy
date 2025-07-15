@@ -1,7 +1,7 @@
-import React, { useRef, useState, useEffect } from 'react';
-import Heading from '../components/core/heading';
-import toast from 'react-hot-toast';
-import axios from 'axios';
+import React, { useRef, useState, useEffect } from "react";
+import Heading from "../components/core/heading";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 const Custom = ({ mode, setMode }) => {
   const canvasRef = useRef(null);
@@ -9,22 +9,30 @@ const Custom = ({ mode, setMode }) => {
   const [mainImage, setMainImage] = useState(null);
   const [logo1, setLogo1] = useState(null);
   const [logo2, setLogo2] = useState(null);
-  const [user,setUser] = useState({});
+  const [user, setUser] = useState({});
 
-
-
-  const [logo1Pos, setLogo1Pos] = useState({ x: 20, y: 20, width: 255, height: 255 });
-  const [logo2Pos, setLogo2Pos] = useState({ x: 50, y: 980, width: 1800, height: 150 });
+  const [logo1Pos, setLogo1Pos] = useState({
+    x: 20,
+    y: 20,
+    width: 255,
+    height: 255,
+  });
+  const [logo2Pos, setLogo2Pos] = useState({
+    x: 50,
+    y: 980,
+    width: 1800,
+    height: 150,
+  });
 
   const [gradient, setGradient] = useState({
-    color1: '#000000',
-    color2: '#ffffff',
-    direction: 'to bottom'
+    color1: "#000000",
+    color2: "#ffffff",
+    direction: "to bottom",
   });
 
   const drawCanvas = () => {
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!mainImage) return;
 
     const bg = new Image();
@@ -34,9 +42,10 @@ const Custom = ({ mode, setMode }) => {
       canvas.height = bg.height;
 
       const grad = ctx.createLinearGradient(
-        0, 0,
-        gradient.direction.includes('right') ? bg.width : 0,
-        gradient.direction.includes('bottom') ? bg.height : 0
+        0,
+        0,
+        gradient.direction.includes("right") ? bg.width : 0,
+        gradient.direction.includes("bottom") ? bg.height : 0
       );
       grad.addColorStop(0, gradient.color1);
       grad.addColorStop(1, gradient.color2);
@@ -79,7 +88,7 @@ const Custom = ({ mode, setMode }) => {
     drawCanvas();
   }, [mainImage, logo1, logo2, logo1Pos, logo2Pos]);
 
-     const token = JSON.parse(localStorage.getItem("token"));
+  const token = JSON.parse(localStorage.getItem("token"));
 
   const fetchProfile = async () => {
     try {
@@ -90,7 +99,6 @@ const Custom = ({ mode, setMode }) => {
       console.log(res);
 
       setUser(res.data.data);
-
     } catch (error) {
       console.error("Fetch profile error:", error);
       toast.error("Failed to fetch profile");
@@ -101,89 +109,135 @@ const Custom = ({ mode, setMode }) => {
     fetchProfile();
   }, []);
 
+  
+
   const handleDownload = () => {
-    if(!token){
-      toast.error("Please LogIn first")
-    }
-    else{
-      if(!user.subscribed){
-          toast.error("Subscribe please for this feature")
-      }
-      else{
-        const link = document.createElement('a');
-        link.download = 'customized-poster.jpg';
-        link.href = canvasRef.current.toDataURL('image/jpeg');
+    if (!token) {
+      toast.error("Please LogIn first");
+    } else {
+      if (!user.subscribed) {
+        toast.error("Subscribe please for this feature");
+      } else {
+        const link = document.createElement("a");
+        link.download = "customized-poster.jpg";
+        link.href = canvasRef.current.toDataURL("image/jpeg");
         link.click();
-        
-        toast.success("download successfull")
+
+        toast.success("download successfull");
       }
     }
   };
 
   return (
-    <div className={`min-h-screen pt-16 pb-20 px-4 md:pt-28 ${mode ? 'bg-blue-100 text-black' : 'bg-slate-900 text-white'}`}>
+    <div
+      className={`min-h-screen pt-16 pb-20 px-4 md:pt-28 ${
+        mode ? "bg-blue-100 text-black" : "bg-slate-900 text-white"
+      }`}
+    >
       <Heading mode={mode} setMode={setMode} />
-      <h2 className="text-2xl font-bold text-center py-6 md:text-4xl">Poster Customizer</h2>
+      <h2 className="text-2xl font-bold text-center py-6 md:text-4xl">
+        Poster Customizer
+      </h2>
 
       {/* Uploads */}
       <div className="flex flex-wrap gap-4 justify-center mb-6">
-        <label htmlFor="imageUpload" className="bg-teal-600 px-6 py-2 rounded text-white md:text-2xl cursor-pointer">
+        <label
+          htmlFor="imageUpload"
+          className="bg-teal-600 px-6 py-2 rounded text-white md:text-2xl cursor-pointer"
+        >
           Upload Main Image
         </label>
-        <input type="file" id="imageUpload" hidden accept="image/*" onChange={(e) => {
-          const file = e.target.files[0];
-          if (file) setMainImage(URL.createObjectURL(file));
-        }} />
+        <input
+          type="file"
+          id="imageUpload"
+          hidden
+          accept="image/*"
+          onChange={(e) => {
+            const file = e.target.files[0];
+            if (file) setMainImage(URL.createObjectURL(file));
+          }}
+        />
 
-        <label htmlFor="logoUpload1" className="bg-teal-600 px-6 py-2 rounded text-white md:text-2xl cursor-pointer">
+        <label
+          htmlFor="logoUpload1"
+          className="bg-teal-600 px-6 py-2 rounded text-white md:text-2xl cursor-pointer"
+        >
           Upload Logo
         </label>
-        <input type="file" id="logoUpload1" hidden accept="image/*" onChange={(e) => {
-          const file = e.target.files[0];
-          if (file) setLogo1(file);
-        }} />
+        <input
+          type="file"
+          id="logoUpload1"
+          hidden
+          accept="image/*"
+          onChange={(e) => {
+            const file = e.target.files[0];
+            if (file) setLogo1(file);
+          }}
+        />
 
-        <label htmlFor="logoUpload2" className="bg-teal-600 px-6 py-2 rounded text-white md:text-2xl cursor-pointer">
+        <label
+          htmlFor="logoUpload2"
+          className="bg-teal-600 px-6 py-2 rounded text-white md:text-2xl cursor-pointer"
+        >
           Upload Footer
         </label>
-        <input type="file" id="logoUpload2" hidden accept="image/*" onChange={(e) => {
-          const file = e.target.files[0];
-          if (file) setLogo2(file);
-        }} />
+        <input
+          type="file"
+          id="logoUpload2"
+          hidden
+          accept="image/*"
+          onChange={(e) => {
+            const file = e.target.files[0];
+            if (file) setLogo2(file);
+          }}
+        />
       </div>
 
       {/* Canvas */}
       <div className="flex justify-center my-10">
-        <canvas ref={canvasRef} className="bg-white rounded shadow border max-w-full md:w-[80vw]" />
+        <canvas
+          ref={canvasRef}
+          className="bg-white rounded shadow border max-w-full md:w-[80vw]"
+        />
       </div>
 
       {/* Manual Position Controls */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-4">
-        {['x', 'y', 'width', 'height'].map((field) => (
+        {["x", "y", "width", "height"].map((field) => (
           <>
-          <label htmlFor={field} className='flex items-center text-xl md:text-2xl font-semibold'>{`Logo1 ${field} :`}</label>
-          <input
-            key={field}
-            type="number"
-            placeholder={`Logo1 ${field}`}
-            value={logo1Pos[field]}
-            onChange={(e) => setLogo1Pos({ ...logo1Pos, [field]: e.target.value })}
-            className="p-2  rounded border md:h-[5vh] md:text-xl"
-          />
+            <label
+              htmlFor={field}
+              className="flex items-center text-xl md:text-2xl font-semibold"
+            >{`Logo1 ${field} :`}</label>
+            <input
+              key={field}
+              type="number"
+              placeholder={`Logo1 ${field}`}
+              value={logo1Pos[field]}
+              onChange={(e) =>
+                setLogo1Pos({ ...logo1Pos, [field]: e.target.value })
+              }
+              className="p-2  rounded border md:h-[5vh] md:text-xl"
+            />
           </>
         ))}
-        {['x', 'y', 'width', 'height'].map((field) => (
+        {["x", "y", "width", "height"].map((field) => (
           <>
-          <label htmlFor={field} className='flex items-center text-xl md:text-2xl font-semibold'>{`Footer ${field} :`}</label>
+            <label
+              htmlFor={field}
+              className="flex items-center text-xl md:text-2xl font-semibold"
+            >{`Footer ${field} :`}</label>
 
-          <input
-            key={field}
-            type="number"
-            placeholder={`Footer ${field}`}
-            value={logo2Pos[field]}
-            onChange={(e) => setLogo2Pos({ ...logo2Pos, [field]: e.target.value })}
-            className="p-2  rounded border  md:h-[5vh] md:text-xl"
-          />
+            <input
+              key={field}
+              type="number"
+              placeholder={`Footer ${field}`}
+              value={logo2Pos[field]}
+              onChange={(e) =>
+                setLogo2Pos({ ...logo2Pos, [field]: e.target.value })
+              }
+              className="p-2  rounded border  md:h-[5vh] md:text-xl"
+            />
           </>
         ))}
       </div>
@@ -193,7 +247,10 @@ const Custom = ({ mode, setMode }) => {
         {/* <button onClick={drawCanvas} className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 md:text-3xl rounded">
           Customize
         </button> */}
-        <button onClick={handleDownload} className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 md:text-3xl rounded">
+        <button
+          onClick={handleDownload}
+          className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 md:text-3xl rounded"
+        >
           Download
         </button>
       </div>

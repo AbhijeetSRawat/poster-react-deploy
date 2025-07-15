@@ -5,11 +5,14 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Heading from "../components/core/heading";
 
-
-
-const Homepage = ({ mode, setTagvalue, setMode, searchValue, setSearchValue}) => {
-
-const navigate = useNavigate();
+const Homepage = ({
+  mode,
+  setTagvalue,
+  setMode,
+  searchValue,
+  setSearchValue,
+}) => {
+  const navigate = useNavigate();
 
   // const changeTheme = () => {
   //   setMode(!mode);
@@ -58,13 +61,12 @@ const navigate = useNavigate();
       setAllLoading(false);
     }
   };
-  
-  
-  const searchClick= (e)=>{
+
+  const searchClick = (e) => {
     e.preventDefault();
     setTagvalue(searchValue);
     navigate("/searchpage");
-  }
+  };
 
   useEffect(() => {
     callShowByDate();
@@ -112,22 +114,20 @@ const navigate = useNavigate();
           />
         </div>
       </div> */}
-      <Heading mode={mode} setMode={setMode}/>
+      <Heading mode={mode} setMode={setMode} />
 
       {/* Searchbar */}
       <div className="mt-3 flex justify-center">
-        
         <input
           type="text"
-          
           placeholder="Search Category or Media"
-          onChange={(e)=>(setSearchValue(e.target.value))}
+          onChange={(e) => setSearchValue(e.target.value)}
           className={`w-[75vw] h-[7vh] rounded-l-md px-3 md:text-xl md:rounded-l-xl ${
             mode ? "bg-blue-400" : "bg-slate-800"
           }`}
         />
         <button
-        onClick={searchClick}
+          onClick={searchClick}
           className={`w-[15vw] h-[7vh] flex justify-center items-center rounded-r-md md:rounded-r-xl ${
             mode ? "bg-blue-400" : "bg-slate-800"
           }`}
@@ -139,7 +139,13 @@ const navigate = useNavigate();
       {/* Today's Posts */}
       <div className="mt-8 px-4 md:px-12">
         <h2 className="text-xl font-semibold mb-3 flex items-center justify-between md:text-2xl">
-          {formattedDate}'s Specials <div onClick={()=>navigate("/todaysspecial")} className="text-xs pt-1 md:text-base">View All{'>'}</div>
+          {formattedDate}'s Specials{" "}
+          <div
+            onClick={() => navigate("/todaysspecial")}
+            className="text-xs pt-1 md:text-base"
+          >
+            View All{">"}
+          </div>
         </h2>
         {dateLoading ? (
           <div className="spinner"></div>
@@ -148,10 +154,15 @@ const navigate = useNavigate();
             {dateData.map((pic, index) => (
               <div
                 key={pic._id || index}
-className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 snap-center rounded shadow "              >
+                className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 snap-center rounded shadow "
+              >
                 <img
                   src={pic.path}
                   alt={pic.productImage || "Today's Post"}
+                  onClick={() => {
+                    localStorage.setItem("selectedImage", pic.path);
+                    navigate("/todaysspecial");
+                  }}
                   className="w-full h-full  object-cover rounded"
                 />
                 {/* <div className="mt-2 text-sm font-medium text-gray-700">{pic.category}</div> */}
@@ -165,7 +176,15 @@ className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 
       {/* Business Specific */}
 
       <div className="mt-5 px-4 md:px-12">
-        <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center justify-between">Business Specific <div onClick={()=>navigate("/businessspecific")} className="text-xs pt-1 md:text-base">View All{'>'}</div></h2>
+        <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center justify-between">
+          Business Specific{" "}
+          <div
+            onClick={() => navigate("/businessspecific")}
+            className="text-xs pt-1 md:text-base"
+          >
+            View All{">"}
+          </div>
+        </h2>
         {allLoading ? (
           <div className="spinner"> </div>
         ) : (
@@ -180,6 +199,10 @@ className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 
                   <img
                     src={pic.path}
                     alt={pic.productImage || "Today's Post"}
+                    onClick={() => {
+                    localStorage.setItem("selectedImage", pic.path);
+                    navigate("/businessspecific");
+                  }}
                     className="w-full h-full  object-cover rounded"
                   />
                   {/* <div className="mt-2 text-sm font-medium text-gray-700">{pic.category}</div> */}
@@ -191,7 +214,15 @@ className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 
 
       {/* Home Decor */}
       <div className="mt-5 px-4 md:px-12">
-        <h2 className="text-xl font-semibold mb-3 flex items-center justify-between md:text-2xl">Home Decorations <div onClick={()=>navigate("/homedecor")} className="text-xs pt-1 md:text-base">View All{'>'}</div></h2>
+        <h2 className="text-xl font-semibold mb-3 flex items-center justify-between md:text-2xl">
+          Home Decorations{" "}
+          <div
+            onClick={() => navigate("/homedecor")}
+            className="text-xs pt-1 md:text-base"
+          >
+            View All{">"}
+          </div>
+        </h2>
         {allLoading ? (
           <div className="spinner"> </div>
         ) : (
@@ -201,7 +232,12 @@ className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 
               .map((pic, index) => (
                 <div
                   key={pic._id || index}
-  className="w-[100px] h-[100px] md:h-[150px] md:w-[150px] overflow flex-shrink-0 snap-center rounded shadow "                >
+                  onClick={() => {
+                    localStorage.setItem("selectedImage", pic.path);
+                    navigate("/homedecor");
+                  }}
+                  className="w-[100px] h-[100px] md:h-[150px] md:w-[150px] overflow flex-shrink-0 snap-center rounded shadow "
+                >
                   <img
                     src={pic.path}
                     alt={pic.productImage || "Today's Post"}
@@ -216,7 +252,15 @@ className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 
 
       {/* Event & Celebrations */}
       <div className="mt-5 px-4 md:px-12">
-        <h2 className="text-xl font-semibold mb-3 flex items-center justify-between md:text-2xl">Event & Celebrations <div onClick={()=>navigate("/eventandcelebrations")} className="text-xs pt-1 md:text-base">View All{'>'}</div></h2>
+        <h2 className="text-xl font-semibold mb-3 flex items-center justify-between md:text-2xl">
+          Event & Celebrations{" "}
+          <div
+            onClick={() => navigate("/eventandcelebrations")}
+            className="text-xs pt-1 md:text-base"
+          >
+            View All{">"}
+          </div>
+        </h2>
         {allLoading ? (
           <div className="spinner"> </div>
         ) : (
@@ -226,10 +270,15 @@ className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 
               .map((pic, index) => (
                 <div
                   key={pic._id || index}
-  className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 snap-center rounded shadow "                >
+                  className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 snap-center rounded shadow "
+                >
                   <img
                     src={pic.path}
                     alt={pic.productImage || "Today's Post"}
+                    onClick={() => {
+                    localStorage.setItem("selectedImage", pic.path);
+                    navigate("/eventandcelebrations");
+                  }}
                     className="w-full h-full  object-cover rounded"
                   />
                   {/* <div className="mt-2 text-sm font-medium text-gray-700">{pic.category}</div> */}
@@ -241,7 +290,15 @@ className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 
 
       {/* Inspirational & Quotes */}
       <div className="mt-5 px-4 md:px-12">
-        <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center justify-between">Inspirational & Quotes <div onClick={()=>navigate("/inspirationalandquotes")} className="text-xs pt-1 md:text-base">View All{'>'}</div></h2>
+        <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center justify-between">
+          Inspirational & Quotes{" "}
+          <div
+            onClick={() => navigate("/inspirationalandquotes")}
+            className="text-xs pt-1 md:text-base"
+          >
+            View All{">"}
+          </div>
+        </h2>
         {allLoading ? (
           <div className="spinner"> </div>
         ) : (
@@ -251,10 +308,15 @@ className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 
               .map((pic, index) => (
                 <div
                   key={pic._id || index}
-  className="w-[100px] h-[100px] md:h-[150px] md:w-[150px] overflow flex-shrink-0 snap-center rounded shadow "                >
+                  className="w-[100px] h-[100px] md:h-[150px] md:w-[150px] overflow flex-shrink-0 snap-center rounded shadow "
+                >
                   <img
                     src={pic.path}
                     alt={pic.productImage || "Today's Post"}
+                    onClick={() => {
+                    localStorage.setItem("selectedImage", pic.path);
+                    navigate("/inspirationalandquotes");
+                  }}
                     className="w-full h-full  object-cover rounded"
                   />
                   {/* <div className="mt-2 text-sm font-medium text-gray-700">{pic.category}</div> */}
@@ -266,7 +328,15 @@ className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 
 
       {/* Custom Design */}
       <div className="mt-5 px-4 md:px-12">
-        <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center justify-between">Custom Design <div onClick={()=>navigate("/customdesign")} className="text-xs pt-1 md:text-base">View All{'>'}</div></h2>
+        <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center justify-between">
+          Custom Design{" "}
+          <div
+            onClick={() => navigate("/customdesign")}
+            className="text-xs pt-1 md:text-base"
+          >
+            View All{">"}
+          </div>
+        </h2>
         {allLoading ? (
           <div className="spinner"> </div>
         ) : (
@@ -276,10 +346,15 @@ className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 
               .map((pic, index) => (
                 <div
                   key={pic._id || index}
-  className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 snap-center rounded shadow "                >
+                  className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 snap-center rounded shadow "
+                >
                   <img
                     src={pic.path}
                     alt={pic.productImage || "Today's Post"}
+                    onClick={() => {
+                    localStorage.setItem("selectedImage", pic.path);
+                    navigate("/customdesign");
+                  }}
                     className="w-full h-full  object-cover rounded"
                   />
                   {/* <div className="mt-2 text-sm font-medium text-gray-700">{pic.category}</div> */}
@@ -291,7 +366,15 @@ className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 
 
       {/* Seasonal Themes */}
       <div className="mt-5 px-4 md:px-12">
-        <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center justify-between">Seasonal Themes <div onClick={()=>navigate("/seasonalthemes")} className="text-xs md:text-base pt-1">View All{'>'}</div></h2>
+        <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center justify-between">
+          Seasonal Themes{" "}
+          <div
+            onClick={() => navigate("/seasonalthemes")}
+            className="text-xs md:text-base pt-1"
+          >
+            View All{">"}
+          </div>
+        </h2>
         {allLoading ? (
           <div className="spinner"> </div>
         ) : (
@@ -301,10 +384,16 @@ className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 
               .map((pic, index) => (
                 <div
                   key={pic._id || index}
-  className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 snap-center rounded shadow "                >
+
+                  className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 snap-center rounded shadow "
+                >
                   <img
                     src={pic.path}
                     alt={pic.productImage || "Today's Post"}
+                    onClick={() => {
+                    localStorage.setItem("selectedImage", pic.path);
+                    navigate("/seasonalthemes");
+                  }}
                     className="w-full h-full  object-cover rounded"
                   />
                   {/* <div className="mt-2 text-sm font-medium text-gray-700">{pic.category}</div> */}
@@ -316,7 +405,15 @@ className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 
 
       {/* Hobbies & Interests */}
       <div className="mt-5 px-4 md:px-12">
-        <h2 className="text-xl font-semibold mb-3 flex items-center justify-between md:text-2xl ">Hobbies & Interests <div onClick={()=>navigate("/hobbiesandinterests")} className="text-xs md:text-base pt-1">View All{'>'}</div></h2>
+        <h2 className="text-xl font-semibold mb-3 flex items-center justify-between md:text-2xl ">
+          Hobbies & Interests{" "}
+          <div
+            onClick={() => navigate("/hobbiesandinterests")}
+            className="text-xs md:text-base pt-1"
+          >
+            View All{">"}
+          </div>
+        </h2>
         {allLoading ? (
           <div className="spinner"> </div>
         ) : (
@@ -326,9 +423,14 @@ className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 
               .map((pic, index) => (
                 <div
                   key={pic._id || index}
-  className="w-[100px] h-[100px] md:h-[150px] md:w-[150px] overflow flex-shrink-0 snap-center rounded shadow "                >
+                  className="w-[100px] h-[100px] md:h-[150px] md:w-[150px] overflow flex-shrink-0 snap-center rounded shadow "
+                >
                   <img
                     src={pic.path}
+                    onClick={() => {
+                    localStorage.setItem("selectedImage", pic.path);
+                    navigate("/hobbiesandinterests");
+                  }}
                     alt={pic.productImage || "Today's Post"}
                     className="w-full h-full  object-cover rounded"
                   />
@@ -341,7 +443,15 @@ className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 
 
       {/* Outdoor & Commercial */}
       <div className="mt-5 px-4 md:px-12">
-        <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center justify-between">Outdoor & Commercial <div onClick={()=>navigate("/outdoorandcommercial")} className="text-xs pt-1 md:text-base">View All{'>'}</div></h2>
+        <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center justify-between">
+          Outdoor & Commercial{" "}
+          <div
+            onClick={() => navigate("/outdoorandcommercial")}
+            className="text-xs pt-1 md:text-base"
+          >
+            View All{">"}
+          </div>
+        </h2>
         {allLoading ? (
           <div className="spinner"> </div>
         ) : (
@@ -351,10 +461,15 @@ className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 
               .map((pic, index) => (
                 <div
                   key={pic._id || index}
-  className="w-[100px] h-[100px] md:h-[150px] md:w-[150px] overflow flex-shrink-0 snap-center rounded shadow "                >
+                  className="w-[100px] h-[100px] md:h-[150px] md:w-[150px] overflow flex-shrink-0 snap-center rounded shadow "
+                >
                   <img
                     src={pic.path}
                     alt={pic.productImage || "Today's Post"}
+                    onClick={() => {
+                    localStorage.setItem("selectedImage", pic.path);
+                    navigate("/outdoorandcommercial");
+                  }}
                     className="w-full h-full  object-cover rounded"
                   />
                   {/* <div className="mt-2 text-sm font-medium text-gray-700">{pic.category}</div> */}
@@ -366,7 +481,15 @@ className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 
 
       {/* Artistic & Abstract */}
       <div className="mt-5 px-4 md:px-12">
-        <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center justify-between">Artistic & Abstract <div onClick={()=>navigate("/artisticandabstract")} className="text-xs pt-1 md:text-base">View All{'>'}</div></h2>
+        <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center justify-between">
+          Artistic & Abstract{" "}
+          <div
+            onClick={() => navigate("/artisticandabstract")}
+            className="text-xs pt-1 md:text-base"
+          >
+            View All{">"}
+          </div>
+        </h2>
         {allLoading ? (
           <div className="spinner"> </div>
         ) : (
@@ -376,10 +499,15 @@ className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 
               .map((pic, index) => (
                 <div
                   key={pic._id || index}
-  className="w-[100px] h-[100px] md:h-[150px] md:w-[150px] overflow flex-shrink-0 snap-center rounded shadow "                >
+                  className="w-[100px] h-[100px] md:h-[150px] md:w-[150px] overflow flex-shrink-0 snap-center rounded shadow "
+                >
                   <img
                     src={pic.path}
                     alt={pic.productImage || "Today's Post"}
+                    onClick={() => {
+                    localStorage.setItem("selectedImage", pic.path);
+                    navigate("/artisticandabstract");
+                  }}
                     className="w-full h-full  object-cover rounded"
                   />
                   {/* <div className="mt-2 text-sm font-medium text-gray-700">{pic.category}</div> */}
@@ -391,7 +519,15 @@ className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 
 
       {/* Religious & Cultural */}
       <div className="mt-5 px-4 md:px-12">
-        <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center justify-between">Religious & Cultural <div onClick={()=>navigate("/religiousandcultural")} className="text-xs pt-1 md:text-base">View All{'>'}</div></h2>
+        <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center justify-between">
+          Religious & Cultural{" "}
+          <div
+            onClick={() => navigate("/religiousandcultural")}
+            className="text-xs pt-1 md:text-base"
+          >
+            View All{">"}
+          </div>
+        </h2>
         {allLoading ? (
           <div className="spinner"> </div>
         ) : (
@@ -401,10 +537,15 @@ className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow flex-shrink-0 
               .map((pic, index) => (
                 <div
                   key={pic._id || index}
-  className="w-[100px] h-[100px] md:h-[150px] md:w-[150px] overflow flex-shrink-0 snap-center rounded shadow "                >
+                  className="w-[100px] h-[100px] md:h-[150px] md:w-[150px] overflow flex-shrink-0 snap-center rounded shadow "
+                >
                   <img
                     src={pic.path}
                     alt={pic.productImage || "Today's Post"}
+                    onClick={() => {
+                    localStorage.setItem("selectedImage", pic.path);
+                    navigate("/religiousandcultural");
+                  }}
                     className="w-full h-full  object-cover rounded"
                   />
                   {/* <div className="mt-2 text-sm font-medium text-gray-700">{pic.category}</div> */}

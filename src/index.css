@@ -8,6 +8,14 @@
   color: #ffffff;
   animation: fill 1s ease-in infinite alternate;
 }
+.loader1 {
+  width: 10px;
+  height: 10px;
+  position: relative;
+  border-radius: 50%;
+  color: #ffffff;
+  animation: fill 1s ease-in infinite alternate;
+}
 .loader::before , .loader::after {
   content: '';
   position: absolute;
